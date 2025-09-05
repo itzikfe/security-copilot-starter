@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Basic prose for the co-pilot output */
+.prose p { margin: 0.5rem 0; }
+
+/* Reduce heading sizes inside prose for compact look */
+.prose h1 { @apply text-xl; }   /* instead of ~2.25rem */
+.prose h2 { @apply text-lg; }   /* instead of ~1.875rem */
+.prose h3 { @apply text-base; } /* instead of ~1.5rem */
+.prose h4 { @apply text-sm; }
+
+.prose ul li,
+.prose ol li {
+  @apply my-1; /* less vertical spacing between bullets */
+}
