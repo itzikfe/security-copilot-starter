@@ -1,0 +1,1647 @@
+{
+  "sections": [
+    {
+      "sub_sections": [
+        {
+          "finding_templates": [
+            {
+              "sem_template": {
+                "sem_header": "Google Workspace inactive user with admin permissions",
+                "sem_long_description": "If an an account with admin permissions is overtaken by an attacker, they will be able to gain control over multiple users email accounts, access sensitive information and perform unauthorized actions on the user's behalf. Therefore, to minimize the risk of a high impact cyber attack against your organization, we highly recommend to disable or delete accounts with admin privileges that are not being used regularly.",
+                "sem_resolution_instruction": "https://support.google.com/a/answer/9011447?hl=en",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes",
+                "sem_recommendations": [
+                  "This is the first bullet",
+                  "This is the second bullet"
+                ]
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Microsoft 365 Multi Factor Authentication not enforced",
+                "sem_long_description": "Enforcing multi-factor authentication (MFA) adds a crucial security layer that prevents account takeover attacks. Without MFA, accounts are vulnerable to password breaches and phishing attacks. Implement MFA to safeguard sensitive data and prevent unauthorized entry.",
+                "sem_resolution_instruction": "https://learn.microsoft.com/en-us/microsoft-365/admin/security-and-compliance/multi-factor-authentication-microsoft-365?view=o365-worldwide",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Microsoft 365 Legacy Authentication Enabled",
+                "sem_long_description": "Legacy authentication protocols such as SMTP and pop are prone to account takeover. These protocols lack modern security measures, making it easier for adversaries to exploit weaknesses. Disable outdated protocols to bolster your defense against unauthorized access and data breaches.",
+                "sem_resolution_instruction": "https://learn.microsoft.com/en-us/azure/active-directory/conditional-access/block-legacy-authentication",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Microsoft 365 risky file types",
+                "sem_long_description": "Allowing risky file types, including amongst others executables and installers, heightens the risk of malware infiltration and data breaches. Secure your environment by promptly blocking file types commonly used for attacks. Restricting these extensions will fortify your defenses against potential threats and unauthorized data leaks.",
+                "sem_resolution_instruction": "https://learn.microsoft.com/en-us/defender-office-365/anti-malware-protection-faq",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Google Workspace weak password policy",
+                "sem_long_description": "The organization may be at risk due to weak password policies within the Google Workspace environment. Immediate attention is recommended to enforce stronger password policies and enhance overall security resilience. Addressing this alert promptly will help mitigate the risk of unauthorized access and potential security breaches.",
+                "sem_resolution_instruction": "https://support.google.com/a/answer/139399?hl=en",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Google Workspace Multi Factor Authentication not enforced",
+                "sem_long_description": "Enforcing multi-factor authentication (MFA) adds a crucial security layer that prevents account takeover attacks. Without MFA, accounts are vulnerable to password breaches and phishing attacks. Implement MFA to safeguard sensitive data and prevent unauthorized entry.",
+                "sem_resolution_instruction": "https://support.google.com/a/answer/9176657?hl=en",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "MacOS Version Outdated",
+                "sem_long_description": "Updating to the latest MacOS version is essential to benefit from enhanced security features and vulnerability patches.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.8,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Misconfigured Secure Email Gateway Records",
+                "sem_long_description": "A misconfigured MX record occurs when the records do not properly direct emails to the intended servers, leading to potential mail delivery issues or security risks. Misconfigurations can stem from several factors, such as incorrect priorities, using the wrong mail server, or, in some cases, having conflicting MX records.",
+                "sem_resolution_instruction": "https://www.at-bay.com/articles/email-security-best-practices/",
+                "severity_score": 0.8,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Microsoft 365 Audit log disabled",
+                "sem_long_description": "Auditing is the process of tracking and recording events and actions within Microsoft 365, such as user logins, file modifications, and other security-related events. When auditing is disabled it might lead to undetected attacks, data breaches, and unauthorized access to sensitive information. Without auditing, an organization may not know that an attack has occurred or that a user has accessed or modified data without proper authorization and impact remediation efforts.",
+                "sem_resolution_instruction": "https://learn.microsoft.com/en-us/purview/audit-log-enable-disable",
+                "severity_score": 0.8,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Microsoft 365 Security Score disabled",
+                "sem_long_description": "Microsoft Secure Score is a measurement of an organization's security posture. Once enabled, Stance Exposure Manager will be able to scan the Security Score findings and alert on misconfiguration or lack of recommended policies.",
+                "sem_resolution_instruction": "https://learn.microsoft.com/en-us/microsoft-365/security/defender/microsoft-secure-score?view=o365-worldwide#how-it-works",
+                "severity_score": 0.8,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Outdated Crowdstrike Agent Detected",
+                "sem_long_description": "Keeping the Crowdstrike agent updated is crucial for maintaining the efficacy of your endpoint security. Older versions may not be capable of detecting or mitigating the latest threats, leaving your systems vulnerable to increasingly sophisticated attacks. We recommend promptly updating all outdated agents to ensure optimal protection and compliance with current security standards.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.8,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Email Multi-factor authentication",
+                "sem_long_description": "At-Bay recommends implementing MFA for all email users.",
+                "sem_resolution_instruction": "https://www.at-bay.com/articles/how-multi-factor-authentication-can-bring-out-best-cyber-insurance",
+                "severity_score": 0.8,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Speculative Store Bypass Mitigation Unsupported by Hardware",
+                "sem_long_description": "Speculative store bypass is part of a class of vulnerabilities known as speculative execution side-channel attacks, which include the well-known Spectre and Meltdown vulnerabilities. This lack of hardware support could expose sensitive data to sophisticated attacks. We recommend reviewing hardware capabilities and considering upgrades or additional security controls to address this vulnerability and protect against potential data exposure.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Exploitation Behavior Monitoring for Code Injection Disabled",
+                "sem_long_description": "Code injection is a critical exploitation technique often used by attackers to execute malicious code and compromise system integrity. Enabling exploitation behavior monitoring, specifically for code injection, is crucial to detect and mitigate these types of attacks early in the attack chain. We recommend reviewing and updating your Crowdstrike settings to enable this protection feature, enhancing your security posture against sophisticated threats.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Credential Guard Not Running",
+                "sem_long_description": "This feature uses virtualization-based security to isolate secrets so that only privileged system software can access them, protecting against credential theft attacks like Pass-the-Hash or Pass-the-Ticket. Activating Credential Guard is crucial for protecting privileged access and securing user credentials.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Branch Target Injection Mitigation Not Enforced",
+                "sem_long_description": "Branch Target Injection, commonly referred to in context with the Spectre vulnerability (CVE-2017-5715), allows attackers to potentially steal data presently processed on the computer. Implementing mitigation techniques such as microcode updates from CPU manufacturers and ensuring operating systems are patched are critical steps in protecting against such vulnerabilities. We recommend reviewing and updating your endpoint configurations to enforce Branch Target Injection mitigations to safeguard sensitive information and maintain system integrity.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Branch Target Injection Mitigation Not Enabled via Registry",
+                "sem_long_description": "Branch Target Injection exploits can allow attackers to read sensitive data from the process memory space, compromising the security and privacy of your systems. Enabling this mitigation via registry settings is crucial to safeguard against these side-channel attacks and enhance the security posture of your systems. We recommend reviewing and updating your registry settings to enforce this mitigation and protect against potential vulnerabilities.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Script Enforcement Policy Disabled",
+                "sem_long_description": "This can expose the system to malicious scripts and software, leading to security breaches. Enforcing a strict script execution policy is essential to prevent potential threats and maintain system integrity.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Credential Dumping Prevention Not Configured",
+                "sem_long_description": "Credential dumping is a technique attackers use to extract account credentials from Windows operating systems. The lack of preventive measures against credential dumping can lead to unauthorized access and enable attackers to move laterally within your network. To mitigate the risk of credential theft and block potential lateral movement, it is critical to enable and properly configure defenses against credential dumping techniques.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Crowdstrike Falcon secure boot disabled",
+                "sem_long_description": "Secure Boot ensures that devices only boot with trusted software from the OEM. Disabling Secure Boot exposes devices to rootkits and other boot-time malware. Enabling Secure Boot is recommended to protect against unauthorized software executions and enhance system security integrity.",
+                "sem_resolution_instruction": "crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Microsoft 365 Safe Link policies disabled",
+                "sem_long_description": "Safe Links is a security feature in Microsoft Defender that plays a role in thwarting phishing and malware attacks. When these policies are inactive, users are vulnerable to clicking on harmful URLs. Enable Safe Links to automatically inspect and block suspicious links in real-time, fortifying your defense against sophisticated cyber threats across Microsoft 365.",
+                "sem_resolution_instruction": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/safe-links-policies-configure?view=o365-worldwide",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Branch Target Injection Mitigation Patch Missing",
+                "sem_long_description": "These vulnerabilities allow attackers to steal data processed on the computer. Keeping your systems unpatched exposes them to potential data breaches and severe security threats. It is crucial to apply the latest security patches that address these vulnerabilities immediately to protect sensitive information and maintain the integrity of your IT infrastructure.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Microsoft 365 phishing filters disabled",
+                "sem_long_description": "Phishing filters serve as a protection layer for users against common attacks. Enable advanced email filtering to identify and block phishing attempts, reducing the risk of users falling victim to scams. By deploying these filters, you enhance Microsoft 365's ability to safeguard users from a wide range of phishing attacks, preserving data integrity and user trust.",
+                "sem_resolution_instruction": "https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/eop-about?view=o365-worldwide",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Rogue Data Cache Load Mitigation Disabled",
+                "sem_long_description": "RDCL attacks exploit speculative execution mechanisms to access privileged memory areas, potentially leading to data exposure or system compromise. Enabling RDCL mitigation is crucial to protect against these sophisticated types of hardware-based attacks. We recommend reviewing and updating your endpoint configurations to ensure that RDCL mitigation is actively enforced, thereby strengthening your defense against potential threats to your sensitive data and system integrity.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Debug Mode Enabled",
+                "sem_long_description": "This mode should be disabled under normal operating conditions to prevent unauthorized access and potential exploitation of system vulnerabilities. It is advisable to disable debug mode to maintain operational security and privacy.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Google Workspace single global admin",
+                "sem_long_description": "Relying on a single global admin account poses risks. A compromise of this account grants an attacker complete control. Create multiple admin accounts with appropriate permissions to distribute authority and mitigate the impact of potential breaches. This strategy strengthens security and minimizes the fallout from unauthorized access.",
+                "sem_resolution_instruction": "https://support.google.com/a/answer/172176?hl=en",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "L1 Terminal Fault Mitigation Not Implemented",
+                "sem_long_description": "L1TF, also known as Foreshadow, targets Intel's Secure Guard Extensions (SGX) technology and can allow attackers to access sensitive information. Not mitigating this vulnerability can expose your systems to significant security risks, including unauthorized access to sensitive data. It is critical to apply L1TF mitigations, which may include microcode updates and configuration changes, to ensure the security of your information and maintain system integrity.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "FileVault Disabled on Mac",
+                "sem_long_description": "FileVault is crucial for encrypting the entire system drive, protecting sensitive data against unauthorized access. Enabling FileVault ensures that all data stored on the device is encrypted automatically.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Google Workspace user inactivity",
+                "sem_long_description": "If an inactive user is overtaken by an attacker, they may be able to gain access to sensitive information or perform unauthorized actions on the user's behalf, that may include impersonation, which might result in compromise of additional assets in your network, while going unnoticed.  Therefore, to minimize the risk of a cyber attack against your organization, we highly recommend to disable or delete accounts that are not being used regularly.",
+                "sem_resolution_instruction": "https://support.google.com/a/answer/33314?hl=en",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Lack of Hardware Support for Branch Target Injection Mitigation",
+                "sem_long_description": "Branch target injection mitigation is crucial for preventing certain types of side-channel attacks that exploit indirect branch prediction. Without hardware support for these mitigations, your systems are at an increased risk of sensitive data exposure through speculative execution attacks. It is recommended to evaluate the deployment of newer hardware that supports these advanced security features or to implement software-based mitigations where hardware upgrades are not feasible.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Ransomware Protection Disabled: CryptoWall",
+                "sem_long_description": "CryptoWall is a type of ransomware known for encrypting files on a victim’s computer and demanding ransom for the decryption key. Enabling CryptoWall protection is essential to safeguard your systems from this specific ransomware threat. The absence of this protection exposes your network to potential encryption attacks, leading to data loss and significant operational disruption. We recommend promptly enabling CryptoWall protection to mitigate these risks and enhance your overall security posture.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Speculative Store Bypass Mitigation Not Enabled",
+                "sem_long_description": "Speculative Store Bypass is a hardware vulnerability that allows attackers to potentially read sensitive information from other processes running on the same machine. This mitigation is crucial for protecting against certain types of side-channel attacks that exploit CPU vulnerabilities. We recommend verifying your endpoint configurations and ensuring that Speculative Store Bypass Mitigation is enabled to safeguard against these vulnerabilities and enhance your network security.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Execution Blocking for Suspicious Scripts Disabled",
+                "sem_long_description": "This feature is crucial for preventing unauthorized or harmful scripts from executing, which can introduce malware, ransomware, or other malicious activities into your network. Enabling script execution blocking enhances your security posture by actively preventing the run of unrecognized and potentially malicious code. We recommend reviewing and enabling this security setting to prevent potential security breaches and ensure compliance with best security practices.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Zero Trust Assessment Service Not Enabled",
+                "sem_long_description": "ZTA provides critical insights by continuously evaluating the security configuration of your endpoints against known vulnerabilities and misconfigurations. Without this service, your organization may miss essential security warnings that could compromise your endpoints. We strongly advise enabling the ZTA service by contacting the Crowdstrike support team",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Ransomware Backup Deletion Protection Disabled",
+                "sem_long_description": "This setting is crucial as it prevents malicious programs from deleting or tampering with backup files, a common tactic used by ransomware to hinder recovery efforts after an attack. Without this protection, your backups could be compromised, significantly impacting your ability to restore data swiftly and safely following a ransomware attack. It is highly recommended to enable protection against backup deletion to safeguard your backups and ensure business continuity in the face of such threats.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Windows Logon Bypass Enabled: Elevated Risk of Lateral Movement and Credential Access",
+                "sem_long_description": "This setting potentially allows unauthorized users to bypass standard authentication processes, thereby facilitating easier lateral movement and unauthorized credential access within your network. This setting is typically used in controlled environments for troubleshooting or administrative purposes but can pose a significant security risk if not managed properly. It is recommended to disable this feature unless absolutely necessary and ensure that any usage is closely monitored and audited to prevent security breaches.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Locky Ransomware Protection Disabled",
+                "sem_long_description": "Locky is a type of ransomware known for encrypting victim's files and demanding ransom payment for the decryption key. Disabling protection against such threats leaves your network at high risk of disruptive and costly attacks. It is crucial to enable and configure ransomware protection features, including specific defenses against Locky, to safeguard your digital assets and ensure business continuity. We recommend verifying your endpoint protection settings and updating your security measures to include ransomware defense.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Execution Blocking of Suspicious Processes Not Enabled",
+                "sem_long_description": "This security feature is critical as it helps prevent potentially harmful applications from executing, thereby reducing the risk of malware infections and other malicious activities. Disabling this feature exposes your network to significant threats, especially from unknown or unverified software. We recommend enabling execution blocking for suspicious processes immediately to enhance your organization's defense mechanisms and maintain the integrity of your systems.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Microsoft 365 limit external recipients",
+                "sem_long_description": "Lacking defined limits on external recipients heightens the risk of spam, abuse, and accidental data exposure. Configure maximum external recipient settings to curtail the potential for email-based attacks and data leaks. By implementing these limits, you enhance email security within Microsoft 365 and maintain control over sensitive information distribution.",
+                "sem_resolution_instruction": "https://learn.microsoft.com/en-us/office365/servicedescriptions/exchange-online-service-description/exchange-online-limits",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Microsoft 365 idle session timeout",
+                "sem_long_description": "Failing to enforce idle session timeout exposes accounts to unauthorized access. Configure automatic logout for inactive users to prevent unauthorized individuals from gaining access to open sessions. By implementing this security measure, you enhance the protection of sensitive data and reduce the risk of unauthorized account usage within Microsoft 365.",
+                "sem_resolution_instruction": "https://learn.microsoft.com/en-us/microsoft-365/admin/manage/idle-session-timeout-web-apps?view=o365-worldwide",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Secure Kernel Not Running",
+                "sem_long_description": "This kernel mode provides additional security measures that protect against exploits and malicious activities at the operating system level. Enabling the secure kernel helps in safeguarding sensitive system operations and preventing unauthorized access.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Application Exploitation Activity Monitoring Disabled",
+                "sem_long_description": "This setting is crucial for detecting and responding to exploitation attempts on applications, which are common vectors for cybersecurity threats. Without active monitoring, your organization may not be able to detect or react promptly to such threats, increasing the risk of successful attacks and potential data breaches. It is highly recommended to enable and configure monitoring for application exploitation activities to enhance your organization's defensive posture against advanced attacks and ensure compliance with security best practices.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Microsoft 365 single global admin",
+                "sem_long_description": "Relying on a single global admin account poses risks. A compromise of this account grants an attacker complete control. Create multiple admin accounts with appropriate permissions to distribute authority and mitigate the impact of potential breaches. This strategy strengthens security and minimizes the fallout from unauthorized access.",
+                "sem_resolution_instruction": "https://learn.microsoft.com/en-us/microsoft-365/admin/add-users/assign-admin-roles?view=o365-worldwide",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Credential Dumping Vulnerability Detected on macOS",
+                "sem_long_description": "Credential dumping is a critical security threat as it allows attackers to extract login credentials, escalating their access within the network. To mitigate this risk, it is essential to enforce stricter security policies and implement system-level protections that restrict access to sensitive memory areas. Regular updates and security audits are also recommended to identify and rectify potential vulnerabilities promptly.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Ransomware File Encryption Protection Disabled",
+                "sem_long_description": "This setting is crucial as it enables mechanisms that prevent unauthorized file encryption by ransomware attacks, which are a common and severe threat to organizational data. Disabling this protection significantly increases the risk of data loss and system compromise. It is strongly recommended to enable ransomware file encryption protection to safeguard your assets against ransomware attacks and minimize operational disruption.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Microsoft 365 prevent users sharing calendars externally",
+                "sem_long_description": "Permitting unchecked external calendar sharing exposes private events and organizational details. Control sharing settings to limit external access and safeguard sensitive scheduling information from unauthorized individuals. By enforcing appropriate sharing restrictions, you enhance data privacy and maintain confidentiality within Microsoft 365.",
+                "sem_resolution_instruction": "https://learn.microsoft.com/en-us/exchange/sharing/sharing-policies/modify-a-sharing-policy",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Execution Blocking for Suspicious Processes on macOS Disabled",
+                "sem_long_description": "This security feature is critical in preventing potentially harmful software from executing, thereby safeguarding your systems against malware, ransomware, and other malicious activities that could compromise data integrity and privacy. It is essential to enable this feature to automatically block executions of processes that are identified as suspicious by Crowdstrike’s threat intelligence. Enabling this feature provides a proactive layer of defense, reducing the risk of security breaches and enhancing overall endpoint security.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Credential Dumping Risk via kcpassword on macOS",
+                "sem_long_description": "The kcpassword file is used to store login passwords on macOS when the automatic login feature is enabled, and if not properly secured, it poses a significant risk of credential dumping. This type of attack allows malicious actors to retrieve stored credentials, compromising user accounts and potentially granting unauthorized access to sensitive information. To mitigate this risk, we recommend disabling automatic login on all macOS devices, ensuring that the kcpassword file does not store passwords insecurely, and conducting regular audits of device security settings to prevent such vulnerabilities.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Microsoft 365 Data Loss Prevention policies disabled",
+                "sem_long_description": "Data Loss Prevention (DLP) policies help protect sensitive data from being exposed to accidental leaks or intentional breaches. Enable comprehensive DLP policies to monitor, prevent, and mitigate data exfiltration across Microsoft 365 services. This ensures the protection of sensitive information and regulatory compliance.",
+                "sem_resolution_instruction": "https://learn.microsoft.com/en-us/purview/dlp-learn-about-dlp",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Execution Blocking for Suspicious Registry Operations Disabled",
+                "sem_long_description": "This security feature is crucial for preventing potentially harmful applications from making unauthorized changes to the system registry, which can lead to system compromises or the installation of malware. Disabling this feature exposes your network to elevated risks of malicious activities and system manipulations. We recommend enabling execution blocking for all suspicious registry operations to strengthen your endpoint security and prevent unauthorized registry modifications.",
+                "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            }
+          ]
+        },
+        {
+          "finding_templates": [
+            {
+              "sem_template": {
+                "sem_header": "Vulnerable FortiOS / FortiProxy / FortiSwitch Manager products",
+                "sem_long_description": "At-Bay detected usage of FortiOS / FortiProxy / FortiSwitch Manager known to be vulnerable to CVE-2022-40684. It is imperative that you apply a patch or update since these systems are a prime target for attackers and often lead to ransomware attacks.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Vulnerable Zimbra Collaboration products",
+                "sem_long_description": "At-Bay detected usage of Zimbra Collaboration known to be vulnerable to CVE-2022-30333, CVE-2022-27924, CVE-2022-27925, CVE-2022-37042. It is imperative that you apply a patch or update since these systems are a prime target for attackers and often lead to ransomware attacks.",
+                "sem_resolution_instruction": "https://wiki.zimbra.com/wiki/Zimbra_Releases",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Vulnerable Microsoft Exchange Server - ProxyNotShell",
+                "sem_long_description": "At-Bay detected usage of a Microsoft Exchange server with a version vulnerable to the ProxyNotShell vulnerability (CVE-2022-41040, CVE-2022-41082). It is imperative that you apply the mitigation recommended by Microsoft since this vulnerability on Microsoft Exchange is a prime target for attackers and often leads to severe ransomware attacks.",
+                "sem_resolution_instruction": "https://msrc-blog.microsoft.com/2022/09/29/customer-guidance-for-reported-zero-day-vulnerabilities-in-microsoft-exchange-server/",
+                "severity_score": 0.95,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Secure Email Gateway",
+                "sem_long_description": "At-Bay identified that your organization does not use a Secure Email Gateway on all email domains. At-Bay recommends implementing a Secure Email Gateway on all email domains to protect against phishing and other email-based attacks. Look for a Secure Email Gateway with these features: anti-malware, anti-spoofing, data loss protection, sandboxing, secure encryption, and threat intelligence and protection.",
+                "sem_resolution_instruction": "https://www.at-bay.com/articles/secure-email-gateway/",
+                "severity_score": 0.8,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Important: Implement and configure DMARC records to improve email security",
+                "sem_long_description": "At-Bay identified that your organization has at least one of domain not protected by DMARC. At-Bay recommends implementing a DMARC record for all domains, even those not used for email, and configuring the DMARC record in accordance with your email service provider.",
+                "sem_resolution_instruction": "https://at-bay.com/articles/dmarc-records",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Implement and configure SPF records to strengthen email security",
+                "sem_long_description": "At-Bay identified that your organization has at least one domain that is not protected by SPF. At-Bay recommends implementing an SPF record for all domains, even those not used for email, and configuring the SPF record in accordance with your email service provider.",
+                "sem_resolution_instruction": "https://at-bay.com/articles/spf-records",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            }
+          ]
+        },
+        {
+          "finding_templates": [
+            {
+              "sem_template": {
+                "sem_header": "Vulnerable Microsoft Exchange products",
+                "sem_long_description": "At-Bay detected usage of Microsoft Exchange known to be vulnerable to CVE-2021-34473, CVE-2021-34523, CVE-2021-31207 (ProxyShell). It is imperative that you apply a patch or update since these systems are a prime target for attackers and often lead to ransomware attacks.",
+                "sem_resolution_instruction": "https://msrc-blog.microsoft.com/2022/09/29/customer-guidance-for-reported-zero-day-vulnerabilities-in-microsoft-exchange-server/",
+                "severity_score": 0.95,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Exposed OWA (Outlook Web Access)",
+                "sem_long_description": "At-Bay detected an exposed OWA. Publicly exposed OWA is a prime target for attackers, often leading to ransomware attacks due to its weak default security settings. If OWA access is necessary for business operations, apply access rules for internet protocol and geolocation. We also recommend implementing multi-factor authentication (MFA) as an added layer of security.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.8,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "On-premise Microsoft Exchange Server",
+                "sem_long_description": "At-Bay identified that your organization has an On-premise Microsoft Exchange Server. Migrating from an on-premise Microsoft Exchange server to a cloud-based email server can help you stay secure.",
+                "sem_resolution_instruction": "https://docs.microsoft.com/en-us/exchange/mailbox-migration/mailbox-migration",
+                "severity_score": 0.8,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Strengthen email security settings to prevent email compromise",
+                "sem_long_description": "At-Bay recommends implementing best practices and regular checks to ensure strong security controls are in place, such as using a dedicated administrative account, enabling multi-factor authentication (MFA), and disabling automatic email forwarding. We also recommend reviewing the security settings on a regular basis to ensure they are always up to date.",
+                "sem_resolution_instruction": "https://www.at-bay.com/articles/email-security/",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "End of support version of Exim",
+                "sem_long_description": "At-Bay detected usage of Exim known to be End of Support. It is imperative that you upgrade to a fully supported version to ensure you stay up to date with the latest security patches.",
+                "sem_resolution_instruction": "https://www.exim.org/download.html",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Enable your Microsoft 365 Integration",
+                "sem_long_description": "Seamlessly integrate your Microsoft 365 account to identify configuration issues and get recommendations for best practices that will improve your security posture.\nThe integration automates the scanning of your Microsoft 365 configuration, alerting you to security concerns before they become issues.",
+                "sem_resolution_instruction": "https://stance.at-bay.com/integrations",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Enable your Google Workspace Integration",
+                "sem_long_description": "Seamlessly integrate your Google Workspace account to identify configuration issues and get recommendations for best practices that will improve your security posture.\nThe integration automates the scanning of your Google Workspace configuration, alerting you to security concerns before they become issues.",
+                "sem_resolution_instruction": "https://stance.at-bay.com/integrations",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_sections": [
+        {
+          "finding_templates": [
+            {
+              "sem_template": {
+                "sem_header": "Vulnerable SolarWinds Serv-U products",
+                "sem_long_description": "At-Bay detected usage of SolarWinds Serv-U known to be vulnerable to CVE-2021-35211. It is imperative that you apply a patch or update since these systems are a prime target for attackers and often lead to ransomware attacks.",
+                "sem_resolution_instruction": "https://wiki.zimbra.com/wiki/Zimbra_Releases",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Exposed X11 ports",
+                "sem_long_description": "At-Bay detected at least one publicly exposed X11 port in your network. Publicly exposed X11 ports are a prime target for attackers and often lead to ransomware attacks.\nIf having an open X11 is necessary for business operations, we recommend protecting it by placing it behind a virtual private network (VPN) and enforcing multi-factor authentication (MFA).",
+                "sem_resolution_instruction": "https://at-bay.com/articles/high-risk-ports/",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Exposed RDP ports",
+                "sem_long_description": "At-Bay detected at least one publicly exposed Remote Desktop Protocol (RDP) port in your network. Publicly exposed RDP ports are a prime target for attackers and often lead to ransomware attacks.\nIf having an open RDP is necessary for business operations, we recommend protecting it by placing it behind a virtual private network (VPN) and enforcing multi-factor authentication (MFA).",
+                "sem_resolution_instruction": "https://www.at-bay.com/articles/high-risk-ports/",
+                "severity_score": 0.95,
+                "sem_category": "configuration_changes"
+              }
+            }
+          ]
+        },
+        {
+          "finding_templates": [
+            {
+              "sem_template": {
+                "sem_header": "Vulnerable FortiGate VPN products",
+                "sem_long_description": "At-Bay detected usage of FortiGate VPN known to be vulnerable to CVE-2018-13379. It is imperative that you apply a patch or update since these systems are a prime target for attackers and often lead to ransomware attacks.",
+                "sem_resolution_instruction": "https://www.fortiguard.com/psirt/FG-IR-18-384",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Vulnerable SonicWall SMA & SRA products",
+                "sem_long_description": "At-Bay detected usage of SonicWall SMA & SRA that are known to be vulnerable to CVE-2019-7481. It is imperative that you apply a patch or update since these systems are a prime target for attackers and often lead to ransomware attacks.",
+                "sem_resolution_instruction": "https://www.sonicwall.com/support/product-notification/urgent-security-notice-critical-risk-to-unpatched-end-of-life-sra-sma-8-x-remote-access-devices/210713105333210/",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Vulnerable Pulse Secure VPN products",
+                "sem_long_description": "At-Bay detected usage of Pulse Secure VPN known to be vulnerable to CVE-2018-5299, CVE-2018-6320, CVE-2019-11510, CVE-2019-11540. It is imperative that you apply a patch or update since these systems are a prime target for attackers and often lead to ransomware attacks.",
+                "sem_resolution_instruction": "https://forums.ivanti.com/s/welcome-pulse-secure?language=en_US",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Vulnerable SonicWall SMA products",
+                "sem_long_description": "At-Bay detected usage of SonicWall SMA known to be vulnerable to CVE-2021-20038, CVE-2021-20039, CVE-2021-20040, CVE-2021-20041, CVE-2021-20042, CVE-2021-20043, CVE-2021-20044, CVE-2021-20045. It is imperative that you apply a patch or update since these systems are a prime target for attackers and often lead to ransomware attacks.",
+                "sem_resolution_instruction": "https://psirt.global.sonicwall.com/vuln-detail/SNWLID-2021-0026",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Self-Managed Remote Access",
+                "sem_long_description": "At-Bay recommendation:\n1. Keep the device Up-to-Date: Ensure that your Remote Access/VPN device is running the latest software version and has all available patches applied. It is recommended to automatically install updates and if this is not possible to regularly check for updates and apply them promptly to enhance security.\n2. Implement Multi-Factor Authentication (MFA): Make MFA mandatory for all users and administrators of the device.\n3. Secure Administrative Web Interfaces: Close management login portals from being accessible via the public internet. If having internet facing login portal is necessary for business operations, access to it should be limited to specific IP addresses.\n4. Enable Automatic Updates: Ensure that automatic software updates are turned on to keep your remote access/VPN systems up to date and secure.",
+                "sem_resolution_instruction": "https://www.at-bay.com/articles/why-vpn-can-be-small-business-weakest-link/",
+                "severity_score": 0.8,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Remote Access Multi-factor authentication",
+                "sem_long_description": "At-Bay recommends implementing MFA for Remote Access Applications.",
+                "sem_resolution_instruction": "https://www.at-bay.com/articles/how-multi-factor-authentication-can-bring-out-best-cyber-insurance",
+                "severity_score": 0.8,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "SonicWall VPN",
+                "sem_long_description": "Confirm you are running an unaffected version of SonicWall VPN or immediately upgrade to a current version.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.8,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "End of support version of SonicWall SMA",
+                "sem_long_description": "At-Bay detected usage of SonicWall SMA known to be End of Support. It is imperative that you upgrade to a fully supported version to ensure you stay up to date with the latest security patches.",
+                "sem_resolution_instruction": "https://www.sonicwall.com/support/product-notification/urgent-security-notice-critical-risk-to-unpatched-end-of-life-sra-sma-8-x-remote-access-devices/210713105333210/",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Exposed Remote Desktop Web Access (RDWeb)",
+                "sem_long_description": "At-Bay detected an exposed RDWeb. Publicly exposed RDWeb is a prime target for attackers and often leading to ransomware attacks due to its weak default security settings. If RDWeb access is necessary for business operations, we recommend placing it behind a virtual private network (VPN) and enforcing multi-factor authentication (MFA).",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "VPN security settings",
+                "sem_long_description": "At-Bay recommends that you follow your vendor's guidelines to ensure your VPN is protected. For stronger VPN security, At-Bay recommends regular updates to the latest versions, access rules to limit access from certain locations, extended access logs, and multi-factor authentication (MFA) for any system accessed from the public Internet.",
+                "sem_resolution_instruction": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa20-073a",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Self-Managed Remote Access",
+                "sem_long_description": "At-Bay recommendation:\n1. Keep the device Up-to-Date: Ensure that your Remote Access/VPN device is running the latest software version and has all available patches applied. It is recommended to automatically install updates and if this is not possible to regularly check for updates and apply them promptly to enhance security.\n2. Implement Multi-Factor Authentication (MFA): Make MFA mandatory for all users and administrators of the device.\n3. Secure Administrative Web Interfaces: Close management login portals from being accessible via the public internet. If having internet facing login portal is necessary for business operations, access to it should be limited to specific IP addresses.\n4. Enable Automatic Updates: Ensure that automatic software updates are turned on to keep your remote access/VPN systems up to date and secure.",
+                "sem_resolution_instruction": "https://www.at-bay.com/articles/why-vpn-can-be-small-business-weakest-link/",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_sections": [
+        {
+          "finding_templates": [
+            {
+              "sem_template": {
+                "sem_header": "Exposed MongoDB Database Port",
+                "sem_long_description": "At-Bay discovered at least one exposed MongoDB database port on your system. At-Bay requires closing all exposed MongoDB database ports to prevent attackers from gaining unauthorized access and exfiltrating sensitive data. If an open MongoDB database port is necessary for business operations, tunnel traffic to your database through Secure Shell (SSH) or another secure gateway.\nIf you do not have in-house resources to address this vulnerability, please contact your IT provider.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Exposed MS-SQL Database Port",
+                "sem_long_description": "discovered at least one exposed MS-SQL database port on your system. At-Bay requires closing all exposed MS-SQL database ports to prevent attackers from gaining unauthorized access and exfiltrating sensitive data. If an open MS-SQL database port is necessary for business operations, tunnel traffic to your database through Secure Shell (SSH) or another secure gateway.\nIf you do not have in-house resources to address this vulnerability, please contact your IT provider.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Exposed Elasticsearch Database Port",
+                "sem_long_description": "At-Bay discovered at least one exposed Elasticsearch database port on your system. At-Bay requires closing all exposed Elasticsearch database ports to prevent attackers from gaining unauthorized access and exfiltrating sensitive data. If an open Elasticsearch database port is necessary for business operations, tunnel traffic to your database through Secure Shell (SSH) or another secure gateway.\nIf you do not have in-house resources to address this vulnerability, please contact your IT provider.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Exposed Database Port",
+                "sem_long_description": "At-Bay discovered at least one exposed database port on your system. At-Bay requires closing all exposed database ports to prevent attackers from gaining unauthorized access and exfiltrating sensitive data. If an open database port is necessary for business operations, tunnel traffic to your database through Secure Shell (SSH) or another secure gateway.\nIf you do not have in-house resources to address this vulnerability, please contact your IT provider.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "End of support version of PostgreSQL",
+                "sem_long_description": "At-Bay detected usage of PostgreSQL known to be End-of-Support. It is imperative that you upgrade to a fully supported version to ensure you stay up to date with the latest security patches.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "End of support version of MySQL",
+                "sem_long_description": "At-Bay detected usage of MySQL known to be End of Support. It is imperative that you upgrade to a fully supported version to ensure you stay up to date with the latest security patches.",
+                "sem_resolution_instruction": "https://dev.mysql.com/downloads/mysql/",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "End of support version of Microsoft SQL",
+                "sem_long_description": "At-Bay detected usage of Microsoft SQL known to be End of Support. It is imperative that you upgrade to a fully supported version to ensure you stay up to date with the latest security patches.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            }
+          ]
+        },
+        {
+          "finding_templates": [
+            {
+              "sem_template": {
+                "sem_header": "Fortinet FortiGate Access Post-Patching via SSL-VPN Symlink Exploit",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of FortiOS. At-Bay recommends following the vendor's mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://www.fortinet.com/blog/psirt-blogs/analysis-of-threat-actor-activity",
+                "severity_score": 0.95,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Confluence Data Center and Server Improper Authorization Vulnerability",
+                "sem_long_description": "At-Bay detected usage of Atlassian Confluence known to be vulnerable to CVE-2023-22518. It is imperative that you apply a patch or update since these systems are a prime target for attackers and often lead to ransomware attacks.",
+                "sem_resolution_instruction": "https://confluence.atlassian.com/security/cve-2023-22518-improper-authorization-vulnerability-in-confluence-data-center-and-server-1311473907.html",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Confluence Privilege Escalation Vulnerability",
+                "sem_long_description": "Placeholder",
+                "sem_resolution_instruction": "Placeholder",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Vulnerable Solarwinds Web Help Desk",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of Web Help Desk. At-Bay recommends following the vendor's mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://support.solarwinds.com/SuccessCenter/s/article/WHD-12-8-3-Hotfix-1",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "FortiClient Enterprise Management Server SQL Injection Vulnerability",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of FortiClient Enterprise Management Server. At-Bay requires following the vendor's recommended mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://fortiguard.fortinet.com/psirt/FG-IR-24-007",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Advisory: SonicWall Devices May Be at Risk",
+                "sem_long_description": "At-Bay has identified that your organization may be using a SonicWall Device, which could be impacted by the CVE-2024-40766 vulnerability. The vulnerability may allow unauthorized access and, in some cases, cause firewall crashes. At-Bay strongly advises following the vendor’s mitigation steps below. If you lack the resources to apply the patch, please contact your IT provider.",
+                "sem_resolution_instruction": "https://psirt.global.sonicwall.com/vuln-detail/SNWLID-2024-0015",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Advisory: SonicWall SonicOS Gen 5 May Be at Risk",
+                "sem_long_description": "At-Bay has identified that your organization is using SonicWall SonicOS Gen 5, which may be impacted by the CVE-2024-40766 vulnerability. This vulnerability could allow unauthorized access and, in some cases, cause firewall crashes. At-Bay strongly advises following the vendor’s mitigation steps: apply the patched version 5.9.2.14-13o and disable firewall WAN management access and firewall SSLVPN access as soon as possible. If you lack the resources to apply the patch, please contact your IT provider.",
+                "sem_resolution_instruction": "https://psirt.global.sonicwall.com/vuln-detail/SNWLID-2024-0015",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Fortinet FortiOS Out of Bound Write Vulnerability",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of Fortinet SSL VPN. At-Bay requires following the vendor's recommended mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://www.fortiguard.com/psirt/FG-IR-24-015",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Exposed Telnet ports",
+                "sem_long_description": "At-Bay detected at least one publicly exposed Telnet port in your network. Publicly exposed Telnet ports are a prime target for attackers and often lead to ransomware attacks.\nIf having an open Telnet is necessary for business operations, we recommend protecting it by placing it behind a virtual private network (VPN) and enforcing multi-factor authentication (MFA).",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Metabase Remote Code Execution Vulnerability",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable Metabase server. At-Bay requires following the vendor's recommended mitigation to reduce exposure.\nIf you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Advisory: SonicWall SonicOS Gen 7 May Be at Risk",
+                "sem_long_description": "At-Bay has identified that your organization is using SonicWall SonicOS Gen 7, which may be impacted by the CVE-2024-40766 vulnerability. This vulnerability could allow unauthorized access and, in some cases, cause firewall crashes. At-Bay strongly advises following the vendor’s mitigation steps: apply the patched version 7.0.1-5035 or higher and disable firewall WAN management access and firewall SSLVPN access as soon as possible. If you lack the resources to apply the patch, please contact your IT provider.",
+                "sem_resolution_instruction": "https://psirt.global.sonicwall.com/vuln-detail/SNWLID-2024-0015",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Check Point Quantum Gateway Arbitrary File Read",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of Check Point Quantum Gateway. At-Bay recommends following the vendor's mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://support.checkpoint.com/results/sk/sk182336",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Vulnerable Ubiquiti UniFi products",
+                "sem_long_description": "At-Bay detected usage of Ubiquiti UniFi known to be vulnerable to CVE-2021-44228. It is imperative that you apply a patch or update since these systems are a prime target for attackers and often lead to ransomware attacks.",
+                "sem_resolution_instruction": "https://www.at-bay.com/articles/log4j-vendor-responses/",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "PaperCut Authentication Bypass Vulnerability",
+                "sem_long_description": "At-Bay discovered your organization is running a Vulnerable Version of PaperCut (CVE-2023-27350). At-Bay requires following PaperCut mitigation to reduce exposure.\nIf you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Apache ActiveMQ RCE Vulnerability",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of Apache ActiveMQ. At-Bay requires following the vendor's recommended mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://activemq.apache.org/security-advisories.data/CVE-2023-46604",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "SysAid Path Traversal Vulnerability",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of SysAid software. At-Bay requires following the vendor's recommended mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://www.sysaid.com/blog/service-desk/on-premise-software-security-vulnerability-notification",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Craft CMS Remote Code Execution Vulnerability",
+                "sem_long_description": "Placeholder",
+                "sem_resolution_instruction": "Placeholder",
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Confluence Remote Code Execution Vulnerability CVE-2023-22527",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of Confluence. At-Bay requires following the vendor's recommended mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://confluence.atlassian.com/security/cve-2023-22527-rce-remote-code-execution-vulnerability-in-confluence-data-center-and-confluence-server-1333990257.html",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "SonicWall SMA pre-authentication arbitrary file-read vulnerability, which attackers can leverage to achieve remote command injection",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of SonicWall SMA. At-Bay recommends following the vendor's mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://psirt.global.sonicwall.com/vuln-detail/SNWLID-2024-0018",
+                "severity_score": 0.95,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "FortiOS Remote Code Execution Through String Format Vulnerability",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of FortiOS. At-Bay recommends following the vendor's mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://www.fortiguard.com/psirt/FG-IR-24-029",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "OpenVPN Access Server Remote Code Execution Vulnerability",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of OpenVPN Access Server. At-Bay requires following the vendor's recommended mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://openvpn.net/security-advisory/access-server-security-update-cve-2023-46849-cve-2023-46850/",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Vulnerable Microsoft SharePoint products",
+                "sem_long_description": "At-Bay detected usage of Microsoft SharePoint known to be vulnerable to CVE-2019-0604. It is imperative that you apply a patch or update since these systems are a prime target for attackers and often lead to ransomware attacks.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Zyxel OS Command Injection Vulnerability",
+                "sem_long_description": "At-Bay discovered your organization is running a Vulnerable version of Zyxel (CVE-2023-28771). At-Bay requires upgrading to a patched version.\nIf you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "CrushFTP Server Side Template Injection Vulnerability",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of CrushFTP. At-Bay recommends following the vendor's mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://www.crushftp.com/crush11wiki/Wiki.jsp?page=Update",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Vulnerable Citrix ADC or Citrix Gateway products",
+                "sem_long_description": "At-Bay detected usage of Citrix ADC or Citrix Gateway known to be vulnerable to CVE-2019-19781. It is imperative that you apply a patch or update since these systems are a prime target for attackers and often lead to ransomware attacks.",
+                "sem_resolution_instruction": "https://support.citrix.com/article/CTX267027/cve201919781-vulnerability-in-citrix-application-delivery-controller-citrix-gateway-and-citrix-sdwan-wanop-appliance",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Vulnerable MobileIron products",
+                "sem_long_description": "At-Bay detected usage of MobileIron known to be vulnerable to CVE-2021-44228. It is imperative that you apply a patch or update since these systems are a prime target for attackers and often lead to ransomware attacks.",
+                "sem_resolution_instruction": "https://www.at-bay.com/articles/log4j-vendor-responses/",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Qlik Sense Enterprise ZeroQlik Vulnerability (CVE-2023-41265 and CVE-2023-41266)",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of Qlik Sense Enterprise. At-Bay requires following the vendor's recommended mitigation to reduce exposure.\\nIf you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://community.qlik.com/t5/Official-Support-Articles/Critical-Security-fixes-for-Qlik-Sense-Enterprise-for-Windows/ta-p/2110801",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Ivanti EPMM Remote Unauthenticated API Access Vulnerability",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of Ivanti EPMM. At-Bay requires following the vendor's recommended mitigation to reduce exposure.\nIf you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "ConnectWise ScreenConnect Auth Bypass + RCE Vulnerabilities",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of ScreenConnect. At-Bay recommends following the vendor's mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://www.connectwise.com/company/trust/security-bulletins/connectwise-screenconnect-23.9.8",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Unauthenticated Stack-Based Buffer Overflow Vulnerability in SonicOS",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of SonicWall FireWall. At-Bay requires following the vendor's recommended mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://psirt.global.sonicwall.com/vuln-detail/SNWLID-2022-0003",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "SonicWall SMA SQL Injection Vulnerability",
+                "sem_long_description": "At-Bay detected usage of SonicWall SMA known to be vulnerable to CVE-2021-20016. It is imperative that you apply a patch or update since these systems are a prime target for attackers and often lead to ransomware attacks.",
+                "sem_resolution_instruction": "https://www.sonicwall.com/support/technical-documentation/docs/sma_100-10-2-upgrade_guide/Content/sma-ug-obtaining-firmware.htm",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Vulnerable Cleo LexiCom, VLTrader, or Harmony",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of Cleo LexiCom, VLTrader, or Harmony. At-Bay recommends following the vendor's mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://support.cleo.com/hc/en-us/articles/28408134019735-Cleo-Product-Security-Update-CVE-2024-55956",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Solarwinds Serv-u Directory Traversal",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of Serv-u. At-Bay recommends following the vendor's mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://www.solarwinds.com/trust-center/security-advisories/cve-2024-28995",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Ransomware Exposure via Vulnerable Cisco ASA",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of Cisco ASA. At-Bay requires updating to the latest version to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://www.cisco.com/c/en/us/td/docs/security/asa/upgrade/asa-upgrade/planning.html",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Advisory: SonicWall SonicOS Gen 6 May Be at Risk",
+                "sem_long_description": "At-Bay has identified that your organization is using SonicWall SonicOS Gen 6, which may be impacted by the CVE-2024-40766 vulnerability. This vulnerability could allow unauthorized access and, in some cases, cause firewall crashes. At-Bay strongly advises following the vendor’s mitigation steps: apply the patched version 6.5.2.8-2n (for SM9800, NSsp 12400, NSsp 12800 or 6.5.4.15.116n (for other Gen6 Firewall appliances) and disable firewall WAN management access and firewall SSLVPN access as soon as possible. If you lack the resources to apply the patch, please contact your IT provider.",
+                "sem_resolution_instruction": "https://psirt.global.sonicwall.com/vuln-detail/SNWLID-2024-0015",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Ivanti Connect Secure Stack-based Buffer Overflow",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of Connect Secure. At-Bay recommends following the vendor's mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://forums.ivanti.com/s/article/April-Security-Advisory-Ivanti-Connect-Secure-Policy-Secure-ZTA-Gateways-CVE-2025-22457?language=en_US",
+                "severity_score": 0.95,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Vulnerable Veeam Products",
+                "sem_long_description": "At-Bay detected usage of Veeam Superset known to be vulnerable to CVE-2023-27532. It is imperative that you apply a patch or update since these systems are a prime target for attackers and often lead to ransomware attacks.",
+                "sem_resolution_instruction": "https://www.veeam.com/kb4424",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Unauthenticated RCE in JetBrains TeamCity",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of TeamCity. At-Bay requires updating to the latest version to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://blog.jetbrains.com/teamcity/2024/03/additional-critical-security-issues-affecting-teamcity-on-premises-cve-2024-27198-and-cve-2024-27199-update-to-2023-11-4-now/",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Citrix ADC & Citrix Gateway Sensitive Information Disclosure Flaw",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of Citrix ADC & Citrix Gateway. At-Bay requires following the vendor's recommended mitigation to reduce exposure.\\nIf you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://www.netscaler.com/blog/news/cve-2023-4966-critical-security-update-now-available-for-netscaler-adc-and-netscaler-gateway/",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Palo Alto PAN-OS (GlobalProtect) Command Injection",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of PAN-OS. At-Bay recommends following the vendor's mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://security.paloaltonetworks.com/CVE-2024-3400",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "WS_FTP Remote Code Execution Vulnerability",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of WS_FTP. At-Bay requires following the vendor's recommended mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://www.ipswitch.com/blog/security-update-for-ws_ftp-server-customers",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "VMware ESXi Vulnerable Version",
+                "sem_long_description": "At-Bay discovered your organization is running a Vulnerable Version of VMware ESXi (CVE-2021-21974). At-Bay requires following VMware mitigation to reduce exposure.\nIf you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Vulnerable On-premise Atlassian Confluence products",
+                "sem_long_description": "At-Bay detected usage of On-premise Atlassian Confluence known to be vulnerable to CVE-2022-26134. It is imperative that you apply a patch or update since these systems are a prime target for attackers and often lead to ransomware attacks.",
+                "sem_resolution_instruction": "https://confluence.atlassian.com/doc/confluence-security-advisory-2022-06-02-1130377146.html",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "ownCloud Configuration Exposure Vulnerability",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of ownCloud. At-Bay requires following the vendor's recommended mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://owncloud.com/security-advisories/disclosure-of-sensitive-credentials-and-configuration-in-containerized-deployments/",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "IBM Aspera Faspex RCE Vulnerability",
+                "sem_long_description": "At-Bay discovered your organization is running a Vulnerable IBM Aspera Faspex (CVE-2022-47986). At-Bay requires following IBM's mitigation to reduce exposure.\nIf you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "PaperCut Arbitrary File Upload Vulnerability",
+                "sem_long_description": "At-Bay discovered your organization is running a Vulnerable Version of PaperCut (CVE-2023-39143). At-Bay requires following PaperCut mitigation to reduce exposure.\nIf you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "SAP Request Smuggling Vulnerability",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of SAP software. At-Bay requires following the vendor's recommended mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://blogs.sap.com/2022/02/11/remediation-of-cve-2022-22536-request-smuggling-and-request-concatenation-in-sap-netweaver-sap-content-server-and-sap-web-dispatcher/",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Vulnerable VMware Horizon products",
+                "sem_long_description": "At-Bay detected usage of VMware Horizon known to be vulnerable to CVE-2021-44228. It is imperative that you apply a patch or update since these systems are a prime target for attackers and often lead to ransomware attacks.",
+                "sem_resolution_instruction": "https://www.at-bay.com/articles/log4j-vendor-responses/",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Vulnerable Citrix ADC or Citrix Gateway products",
+                "sem_long_description": "At-Bay detected usage of Citrix ADC or Citrix Gateway known to be vulnerable to CVE-2022-27510, CVE-2022-27513, CVE-2022-27516. It is imperative that you apply a patch or update since these systems are a prime target for attackers and often lead to ransomware attacks.",
+                "sem_resolution_instruction": "https://support.citrix.com/article/CTX463706/citrix-gateway-and-citrix-adc-security-bulletin-for-cve202227510-cve202227513-and-cve202227516",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "End of support version of VMware ESXi",
+                "sem_long_description": "At-Bay detected usage of VMware ESXi known to be End of Support. It is imperative that you upgrade to a fully supported version to ensure you stay up to date with the latest security patches.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Exposed SMBv1",
+                "sem_long_description": "At-Bay detected your organization is running SMBv1. If SMB is necessary for business operations, patch to Version 2 or beyond and verify all security updates have been installed on your Windows operating system. If you do not use SMB, close Port 445 and confirm the service is not running on Port 139.",
+                "sem_resolution_instruction": "https://www.at-bay.com/articles/microsoft-smbv1/",
+                "severity_score": 0.95,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Openfire Authentication Bypass Vulnerability",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable Openfire. At-Bay requires following the vendor's recommended mitigation to reduce exposure.\nIf you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "FortiOS Authentication Bypass Through Alternate Path or Channel",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of FortiOS / FortiProxy. At-Bay recommends following the vendor's mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://www.fortiguard.com/psirt/FG-IR-24-535",
+                "severity_score": 0.95,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "MOVEit Transfer Vulnerability (CVE-2023-34362, CVE-2024-5806)",
+                "sem_long_description": "At-Bay discovered your organization is running a MOVEit Transfer. At-Bay requires following Progress Community's recommended mitigation to reduce exposure.\nIf you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Account Takeover via password reset without user interactions in Gitlab CE/EE",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of Gitlab CE/EE. At-Bay requires following the vendor's recommended mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://about.gitlab.com/releases/2024/01/11/critical-security-release-gitlab-16-7-2-released/",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Vulnerable Sophos Firewall products",
+                "sem_long_description": "At-Bay detected usage of Sophos Firewall known to be vulnerable to CVE-2022-1040. It is imperative that you apply a patch or update since these systems are a prime target for attackers and often lead to ransomware attacks.",
+                "sem_resolution_instruction": "https://www.sophos.com/en-us/security-advisories/sophos-sa-20220325-sfos-rce",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Apache Tomcat Vulnerability CVE-2020-1938",
+                "sem_long_description": "At-Bay discovered your organization is running a Vulnerable Version of Apache Tomcat (CVE-2020-1938). At-Bay requires following Apache Tomcat mitigation to reduce exposure.\nIf you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Arcserve UDP Authentication Bypass Vulnerability",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of Arcserve UDP. At-Bay requires following the vendor's recommended mitigation to reduce exposure.\nIf you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "SONICOS UNAUTHENTICATED STACK-BASED BUFFER OVERFLOW VULNERABILITY",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of SonicWall Firewall. At-Bay requires following the vendor's recommended mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://psirt.global.sonicwall.com/vuln-detail/SNWLID-2023-0004",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Ivanti Connect Secure Authentication Bypass and Command Injection",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of Ivanti Connect Secure. At-Bay requires following the vendor's recommended mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://forums.ivanti.com/s/article/KB-CVE-2023-46805-Authentication-Bypass-CVE-2024-21887-Command-Injection-for-Ivanti-Connect-Secure-and-Ivanti-Policy-Secure-Gateways?language=en_US",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Citrix ADC and Citrix Gateway Remote Code Execution Vulnerability",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of Citrix ADC or Gateway. At-Bay requires following the vendor's recommended mitigation to reduce exposure.\nIf you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "NextGen Healthcare Mirth Connect Remote Code Execution Vulnerability",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of NextGen Healthcare Mirth Connect. At-Bay recommends following the vendor's mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://github.com/nextgenhealthcare/connect/wiki/Upgrading",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Exposed ICS ports",
+                "sem_long_description": "At-Bay detected at least one publicly exposed ICS port in your network. Publicly exposed ICS ports are a prime target for attackers and often lead to ransomware attacks.\nIf having an open ICS is necessary for business operations, we recommend protecting it by placing it behind a virtual private network (VPN) and enforcing multi-factor authentication (MFA).",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Citrix NetScaler Memory Overflow",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of Citrix NetScaler. At-Bay recommends following the vendor's mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://support.citrix.com/support-home/kbsearch/article?articleNumber=CTX694788",
+                "severity_score": 0.95,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "CloudPanel Authentication Bypass Vulnerability",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of CloudPanel. At-Bay requires following the vendor's recommended mitigation to reduce exposure.\nIf you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "GoAnywhere MFT Command Injection Vulnerability",
+                "sem_long_description": "At-Bay discovered your organization is running a Vulnerable Version of GoAnywhere MFT (CVE-2023-0669). At-Bay requires following Fortra's mitigation to reduce exposure.\nIf you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Vulnerable Oracle Weblogic products",
+                "sem_long_description": "At-Bay detected usage of Oracle Weblogic known to be vulnerable to CVE-2021-44228. It is imperative that you apply a patch or update since these systems are a prime target for attackers and often lead to ransomware attacks.",
+                "sem_resolution_instruction": "https://www.at-bay.com/articles/log4j-vendor-responses/",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Jenkins Arbitrary File Read Vulnerability",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of Jenkins. At-Bay requires following the vendor's recommended mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://www.jenkins.io/security/advisory/2024-01-24/#SECURITY-3314",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "TeamCity Authentication bypass Vulnerability",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of TeamCity. At-Bay requires following the vendor's recommended mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://blog.jetbrains.com/teamcity/2023/09/critical-security-issue-affecting-teamcity-on-premises-update-to-2023-05-4-now",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Exposed LDAP port",
+                "sem_long_description": "At-Bay detected at least one publicly exposed LDAP port in your network. Publicly exposed LDAP ports are a prime target for attackers and should not be exposed to the internet.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Vulnerable On-premise Atlassian Confluence products",
+                "sem_long_description": "At-Bay detected usage of On-premise Atlassian Confluence known to be vulnerable to CVE-2021-26084. It is imperative that you apply a patch or update since these systems are a prime target for attackers and often lead to ransomware attacks.",
+                "sem_resolution_instruction": "https://confluence.atlassian.com/doc/confluence-security-advisory-2021-08-25-1077906215.html",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Vulnerable Apache Superset products",
+                "sem_long_description": "At-Bay detected usage of Apache Superset known to be vulnerable to CVE-2023-27524. It is imperative that you apply a patch or update since these systems are a prime target for attackers and often lead to ransomware attacks.",
+                "sem_resolution_instruction": "https://superset.apache.org/docs/installation/configuring-superset/",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Exposed VNC ports",
+                "sem_long_description": "At-Bay detected at least one publicly exposed VNC port in your network. Publicly exposed VNC ports are a prime target for attackers and often lead to ransomware attacks.\nIf having an open VNC is necessary for business operations, we recommend protecting it by placing it behind a virtual private network (VPN) and enforcing multi-factor authentication (MFA).",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Cisco IOS XE Privilege Escalation Vulnerability",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of Cisco IOS. At-Bay requires following the vendor's recommended mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iosxe-webui-privesc-j22SaA4z",
+                "severity_score": 0.9,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "End of support version of Microsoft Internet Information Services (IIS)",
+                "sem_long_description": "At-Bay detected usage of Microsoft Internet Information Services (IIS) known to be End of Support. It is imperative that you upgrade to a fully supported version to ensure you stay up to date with the latest security patches.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.8,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Microsoft Exchange NTLM Relay Vulnerability",
+                "sem_long_description": "At-Bay suspects your organization is running a vulnerable version of Exchange. At-Bay recommends following the vendor's mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-21410",
+                "severity_score": 0.8,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "XZ Utils Backdoor CVE-2024-3094 - Fedora",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of XZ Utils. At-Bay recommends following the vendor's mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://fedoramagazine.org/cve-2024-3094-security-alert-f40-rawhide/",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Vulnerable WSO2 products",
+                "sem_long_description": "At-Bay detected usage of WSO2 known to be vulnerable to CVE-2022-29464. It is imperative that you apply a patch or update since these systems are a prime target for attackers and often lead to ransomware attacks.",
+                "sem_resolution_instruction": "https://security.docs.wso2.com/en/latest/security-announcements/security-advisories/2022/WSO2-2021-1738/",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Citrix ADC and Citrix Gateway Cross Site Scripting Vulnerability",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of Citrix ADC or Gateway. At-Bay requires following the vendor's recommended mitigation to reduce exposure.\nIf you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Apache HTTP Server Vulnerable Versions",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of Apache HTTP Server. At-Bay requires upgrading your Apache HTTP Server to the latest version.\nIf you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Vulnerable OpenSSH products",
+                "sem_long_description": "At-Bay detected usage of OpenSSH known to be vulnerable to CVE-2023-25136. It is imperative that you apply a patch or update since these systems are a prime target for attackers and often lead to ransomware attacks.",
+                "sem_resolution_instruction": "https://www.openssh.com/releasenotes.html",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Cisco AnyConnect Privilege Escalation Vulnerability",
+                "sem_long_description": "At-Bay discovered your organization may be running Cisco Secure Client Software. At-Bay requires following Cisco mitigation to reduce exposure.\nIf you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Cisco Adaptive Security Appliance (ASA) and Cisco Firepower Threat Defense (FTD) Brute Force Attack Vulnerability",
+                "sem_long_description": "At-Bay discovered that your organization may be using a vulnerable Cisco VPN. At-Bay recommends following Cisco’s recommendations to mitigate this exposure. If you do not have in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-asaftd-ravpn-auth-8LyfCkeC",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "End of support version of nginx",
+                "sem_long_description": "At-Bay detected usage of nginx known to be End of Support. It is imperative that you upgrade to a fully supported version to ensure you stay up to date with the latest security patches.",
+                "sem_resolution_instruction": "https://docs.nginx.com/nginx-agent/installation-upgrade/upgrade/",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Apache Tomcat Vulnerability CVE-2022-45143",
+                "sem_long_description": "At-Bay discovered your organization is running a Vulnerable Version of Apache Tomcat (CVE-2022-45143). At-Bay requires following Apache Tomcat mitigation to reduce exposure.\nIf you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "End of support version of openSSH",
+                "sem_long_description": "At-Bay detected usage of openSSH known to be End of Support. It is imperative that you upgrade to a fully supported version to ensure you stay up to date with the latest security patches.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Apache Tomcat Vulnerability CVE-2017-12617",
+                "sem_long_description": "At-Bay discovered your organization is running a Vulnerable Version of Apache Tomcat (CVE-2017-12617). At-Bay requires following Apache Tomcat mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "XZ Utils Backdoor CVE-2024-3094 - SUSE",
+                "sem_long_description": "At-Bay discovered your organization is running a vulnerable version of XZ Utils. At-Bay recommends following the vendor's mitigation to reduce exposure. If you do not have the in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_resolution_instruction": "https://news.opensuse.org/2024/03/29/xz-backdoor/",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "End of support version of Apache HTTP server",
+                "sem_long_description": "At-Bay detected usage of Apache HTTP server known to be End of Support. It is imperative that you upgrade to a fully supported version to ensure you stay up to date with the latest security patches.",
+                "sem_resolution_instruction": "",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_sections": [
+        {
+          "finding_templates": [
+            {
+              "sem_template": {
+                "sem_header": "Backup",
+                "sem_long_description": "At-Bay recommends creating backups to avoid business interruption in the event of a ransomware attack. To ensure your backups address all critical data, audit every data location to ensure nothing is excluded from the backups. When creating data backups, we recommend following the 3-2-1 Rule: Make 3 copies of the data, store the data across 2 different mediums, and keep 1 copy of the data off-site. To protect against ransomware, make sure the offsite backup is segregated from the business network. At-Bay also recommends performing frequent backups and practicing data restoration to ensure quick resolution in the event of an attack.",
+                "sem_resolution_instruction": "https://www.techtarget.com/searchdatabackup/definition/3-2-1-Backup-Strategy?utm_campaign=New%2520Security%2520Report&utm_source=Broker%2520Platform&utm_medium=Security%2520Report&utm_content=Security%2520Resources",
+                "severity_score": 0.8,
+                "sem_category": "configuration_changes"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sub_sections": [
+        {
+          "finding_templates": [
+            {
+              "sem_template": {
+                "sem_header": "SSL/TLS",
+                "sem_long_description": "At-Bay detected that some of your domains are using unsecured TLS/SSL versions. At-Bay recommends disabling the following TLS/SSL versions: TLS 1.0, TLS 1.1, SSL v2, and SSL v3. We also recommend disabling the following cipher suites: DES, 3DES, and RC4. To replace the outdated versions, enable TLS 1.2 and TLS 1.3 and use Advanced Encryption Standard (AES) ciphers.",
+                "sem_resolution_instruction": "https://developers.cloudflare.com/ssl/edge-certificates/additional-options/cipher-suites/recommendations",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Certificates",
+                "sem_long_description": "At-Bay detected that some of the certificates on publicly available hosts are expired or not signed by a CA. Updating these certificates could prevent attackers from spoofing your website. If your certificate has expired, we recommend renewing it immediately. If your certificate is self-signed, we recommend getting another one from a trusted CA.",
+                "sem_resolution_instruction": "https://www.thesslstore.com/blog/what-is-a-website-security-certificate-and-what-does-it-do-for-your-business/",
+                "severity_score": 0.6,
+                "sem_category": "configuration_changes"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

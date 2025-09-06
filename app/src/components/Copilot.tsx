@@ -207,7 +207,11 @@ export default function Copilot({ issue }: Props) {
             />
           ) : justSwitched ? (
             <Placeholder
+<<<<<<< HEAD
               title="Switched issue"
+=======
+              title="...temp1" // "Switched issue"
+>>>>>>> 8698c50 (Add Settings table with kebab menu (Edit/Delete) and server API for issues)
               subtitle="Choose one of the fixed options or type your question."
             />
           ) : (

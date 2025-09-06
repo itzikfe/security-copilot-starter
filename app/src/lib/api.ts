@@ -1,51 +1,43 @@
 // app/src/lib/api.ts
-// Frontend helpers that talk to your server. The server base URL comes from Vite env:
-//   - local dev:  VITE_API_BASE=http://localhost:5050
-//   - production: VITE_API_BASE=https://<your-render-service>.onrender.com
-
 const API_BASE = import.meta.env.VITE_API_BASE || '';
+const url = (p: string) => (API_BASE ? `${API_BASE}${p}` : p);
 
-function url(p: string) {
-  // Handles both absolute and relative when API_BASE is empty (same-origin)
-  return API_BASE ? `${API_BASE}${p}` : p;
+export async function getIssues(): Promise<any> {
+  const r = await fetch(url('/api/issues'));
+  if (!r.ok) throw new Error(`getIssues failed: ${r.status}`);
+  return r.json();
 }
 
+export async function deleteIssue(id: string): Promise<void> {
+  const r = await fetch(url(`/api/issues/${encodeURIComponent(id)}`), { method: 'DELETE' });
+  if (!r.ok) throw new Error(await r.text());
+}
+
+export async function updateIssue(id: string, patch: any): Promise<void> {
+  const r = await fetch(url(`/api/issues/${encodeURIComponent(id)}`), {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(patch),
+  });
+  if (!r.ok) throw new Error(await r.text());
+}
+
+// existing calls
 export async function scrape(links: string[]) {
   const r = await fetch(url('/api/scrape'), {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ urls: links })
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ urls: links })
   });
-  if (!r.ok) {
-    throw new Error(`scrape failed: ${r.status} ${r.statusText}`);
-  }
-  return r.json() as Promise<{
-    results: Array<{ url: string; ok: boolean; status?: number; text?: string }>;
-  }>;
+  if (!r.ok) throw new Error(`scrape failed: ${r.status}`);
+  return r.json();
 }
 
-/**
- * Sends a raw chat to the server’s /api/chat. Use this for “ChatGPT mode”.
- * @param body shape: { messages: [{role, content}], sources?: [{url, text}] }
- */
 export async function rawChat(body: any) {
   const r = await fetch(url('/api/chat'), {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body)
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body)
   });
   const data = await r.json();
-  if (!r.ok) {
-    const msg = data?.error || `${r.status} ${r.statusText}`;
-    throw new Error(msg);
-  }
+  if (!r.ok) throw new Error(data?.error || `${r.status} ${r.statusText}`);
   return data as { reply: string };
 }
 
-/**
- * Legacy helper (if any code still calls copilot()). You can keep it as an alias
- * or remove it once all call sites use rawChat().
- */
-export async function copilot(body: any) {
-  return rawChat(body);
-}
+export async function copilot(body: any) { return rawChat(body); }
