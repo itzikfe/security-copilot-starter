@@ -23,30 +23,53 @@ export default function Copilot({ issue }: Props) {
   function promptFor(kind: 'about' | 'resolve'): string {
     const name = issue?.name || 'this issue';
     return kind === 'about'
-      ? `Tell me more about this issue: "${name}".`
+      ? `Tell me about this issue: "${name}".`
       : `How to resolve this issue: "${name}".`;
+  }
+
+  /** Build a compact context block from the selected issue */
+  function buildIssueContext(i: Issue): string {
+    const lines: string[] = [];
+    if (i.name) lines.push(`Issue: ${i.name}`);
+    if (i.description) lines.push(`Description: ${i.description}`);
+    if (i.recommendations && i.recommendations.length) {
+      lines.push(
+        `Recommendations:\n- ${i.recommendations.map((r) => r.trim()).filter(Boolean).join('\n- ')}`
+      );
+    }
+    if (typeof i.severityScore === 'number') {
+      const label = i.severityScore >= 0.9 ? 'Critical' : i.severityScore >= 0.61 ? 'Important' : 'Moderate';
+      lines.push(`Severity: ${label} (${i.severityScore})`);
+    }
+    if (i.reference) lines.push(`Reference URL: ${i.reference}`);
+    return lines.join('\n');
   }
 
   async function run(userQuestion?: string) {
     const q = ((userQuestion ?? question) || '').trim();
-    if (!q) return;
+    if (!q || !issue) return;
 
     setJustSwitched(false);
     setLoading(true);
     setReply('');
 
     try {
+      // 1) Scrape the reference (if any) so the server gets real page text as "sources"
       let sources: ScrapedSource[] = [];
-      const refUrl = issue?.reference;
-      if (refUrl) {
-        const { results } = await scrape([refUrl]);
+      if (issue.reference) {
+        const { results } = await scrape([issue.reference]);
         sources = results
           .filter((r) => r.ok && r.text)
           .map((r) => ({ url: r.url, text: r.text as string }));
       }
 
+      // 2) Build a single "user" message containing Issue Context + Question
+      const contextBlock = buildIssueContext(issue);
+      const bundled = `Context:\n${contextBlock}\n\nQuestion:\n${q}\n\nPlease answer based on the context and the reference. If steps are needed, format them clearly.`;
+
+      // 3) Send to Chat endpoint (server will still add its own system prompt + include sources)
       const r = await rawChat({
-        messages: [{ role: 'user', content: q }],
+        messages: [{ role: 'user', content: bundled }],
         sources,
       });
 
@@ -65,42 +88,36 @@ export default function Copilot({ issue }: Props) {
     }
   }
 
+  // Tailwind style for blue outline buttons
   const optionBtn =
     'px-3 py-2 rounded-lg border border-blue-600 text-blue-600 bg-white hover:bg-blue-50 ' +
     'focus:outline-none focus:ring-2 focus:ring-blue-200 disabled:opacity-50 text-sm';
 
+  // Severity icon (already added earlier)
+  const severityIcon =
+    typeof issue?.severityScore === 'number'
+      ? issue.severityScore <= 0.6
+        ? '/icons/moderate.png'
+        : issue.severityScore <= 0.89
+        ? '/icons/important.png'
+        : '/icons/critical.png'
+      : null;
+
   return (
     <div className="h-full flex flex-col px-20">
-      {/* Issue title */}
-     {issue?.name ? (
-  <div className="pt-6 pb-4 flex items-center gap-2">
-    {issue.severityScore != null && (
-      <img
-        src={
-          issue.severityScore <= 0.6
-            ? "/icons/moderate.png"
-            : issue.severityScore <= 0.89
-            ? "/icons/important.png"
-            : "/icons/critical.png"
-        }
-        alt="Severity"
-        className="w-5 h-5"
-      />
-    )}
-    <h1 className="text-lg font-bold text-slate-900">{issue.name}</h1>
-  </div>
-) : null}
-
+      {/* Issue title with severity icon */}
+      {issue?.name ? (
+        <div className="pt-6 pb-4 flex items-center gap-2">
+          {severityIcon ? <img src={severityIcon} alt="Severity" className="w-5 h-5" /> : null}
+          <h1 className="text-lg font-bold text-slate-900">{issue.name}</h1>
+        </div>
+      ) : null}
 
       {/* Description */}
       {issue?.description ? (
         <div className="pb-4 space-y-2">
-          <div className="text-sm font-semibold text-slate-800">
-            Security Finding Description
-          </div>
-          <p className="text-sm text-slate-700 whitespace-pre-wrap">
-            {issue.description}
-          </p>
+          <div className="text-sm font-semibold text-slate-800">Security Finding Description</div>
+          <p className="text-sm text-slate-700 whitespace-pre-wrap">{issue.description}</p>
         </div>
       ) : null}
 
@@ -118,7 +135,7 @@ export default function Copilot({ issue }: Props) {
         </div>
       ) : null}
 
-      {/* Reference */}
+      {/* Single Reference */}
       {issue?.reference ? (
         <div className="pb-4 space-y-2">
           <div className="text-sm font-semibold text-slate-800">Reference</div>
@@ -133,54 +150,50 @@ export default function Copilot({ issue }: Props) {
         </div>
       ) : null}
 
-      {/* Ask Copilot */}
-{issue ? (
-  <div className="py-4 space-y-3">
-    <div className="flex items-center gap-2 text-sm font-semibold text-slate-800">
-      <img
-        src="/icons/copilot.png"
-        alt="Copilot Icon"
-        className="w-4 h-4"
-      />
-      Ask Stance Copilot
-    </div>
+      {/* Ask Stance Copilot */}
+      {issue ? (
+        <div className="py-4 space-y-3">
+          <div className="flex items-center gap-2 text-sm font-semibold text-slate-800">
+            <img src="/icons/copilot.png" alt="Copilot Icon" className="w-4 h-4" />
+            Ask Stance Copilot
+          </div>
 
-    <div className="flex flex-wrap gap-2">
-      <button
-        type="button"
-        className={optionBtn}
-        disabled={loading}
-        onClick={() => run(promptFor('about'))}
-      >
-        Tell me more about this issue
-      </button>
-      <button
-        type="button"
-        className={optionBtn}
-        disabled={loading}
-        onClick={() => run(promptFor('resolve'))}
-      >
-        How to resolve this issue
-      </button>
-    </div>
+          <div className="flex flex-wrap gap-2">
+            <button
+              type="button"
+              className={optionBtn}
+              disabled={loading}
+              onClick={() => run(promptFor('about'))}
+            >
+              Tell me about this issue
+            </button>
+            <button
+              type="button"
+              className={optionBtn}
+              disabled={loading}
+              onClick={() => run(promptFor('resolve'))}
+            >
+              How to resolve this issue
+            </button>
+          </div>
 
-    <input
-      className="w-full border rounded-lg px-3 py-2"
-      placeholder="Type your question and press Enter…"
-      value={question}
-      onChange={(e) => setQuestion(e.target.value)}
-      onKeyDown={handleKeyDown}
-    />
-  </div>
-) : null}
+          <input
+            className="w-full border rounded-lg px-3 py-2"
+            placeholder="Type your question and press Enter…"
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
+            onKeyDown={handleKeyDown}
+          />
+        </div>
+      ) : null}
 
-      {/* Chat area */}
+      {/* Chat area (drawer handles scrolling) */}
       <div className="py-6">
         <div className="w-full rounded-lg bg-gray-50 p-4">
           {loading ? (
             <Placeholder
               title="Thinking…"
-              subtitle="Chatting with the model and considering the reference."
+              subtitle="Chatting with the model and considering the issue context and reference."
               spinner
             />
           ) : reply ? (
@@ -194,7 +207,7 @@ export default function Copilot({ issue }: Props) {
             />
           ) : justSwitched ? (
             <Placeholder
-              title="..." // "Switched issue"
+              title="Switched issue"
               subtitle="Choose one of the fixed options or type your question."
             />
           ) : (
