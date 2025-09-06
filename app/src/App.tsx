@@ -4,6 +4,7 @@ import type { Issue } from './types';
 import IssueList from './components/IssueList';
 import Copilot from './components/Copilot';
 import RightDrawer from './components/RightDrawer';
+import Settings from './components/Settings';
 
 function normalizeUrl(u?: string | null): string | null {
   if (!u) return null;
@@ -43,15 +44,13 @@ function extractIssues(data: any): Issue[] {
         const name: string | undefined = st?.sem_header;
         if (!name || seen.has(name)) continue;
 
+        // Reference (first usable URL)
         const instr = st?.sem_resolution_instruction;
         let reference: string | undefined;
         if (Array.isArray(instr)) {
           for (const candidate of instr) {
             const norm = normalizeUrl(typeof candidate === 'string' ? candidate : String(candidate));
-            if (norm) {
-              reference = norm;
-              break;
-            }
+            if (norm) { reference = norm; break; }
           }
         } else {
           reference = normalizeUrl(instr) ?? undefined;
@@ -60,6 +59,7 @@ function extractIssues(data: any): Issue[] {
         const description: string | undefined = st?.sem_long_description || undefined;
         const recommendations = normalizeRecommendations(st?.sem_recommendations);
 
+        // Severity score
         const scoreRaw = st?.severity_score;
         const severityScore =
           typeof scoreRaw === 'number'
@@ -68,13 +68,16 @@ function extractIssues(data: any): Issue[] {
             ? parseFloat(String(scoreRaw))
             : undefined;
 
+        // New: category
+        const category: string | undefined = st?.sem_category || undefined;
+
         const id: string =
           st?.uuid ||
           ft?.uuid ||
           ft?.identifier ||
           `${name}-${Math.random().toString(36).slice(2, 8)}`;
 
-        out.push({ id, name, reference, description, recommendations, severityScore });
+        out.push({ id, name, reference, description, recommendations, severityScore, category });
         seen.add(name);
       }
     }
@@ -98,11 +101,10 @@ export default function App() {
   const [open, setOpen] = useState(false);
   const [filter, setFilter] = useState<FilterKey>('All');
   const [sortBy, setSortBy] = useState<SortKey>('Severity');
+  const [view, setView] = useState<'main' | 'settings'>('main');
 
   const counts = useMemo(() => {
-    let critical = 0,
-      important = 0,
-      moderate = 0;
+    let critical = 0, important = 0, moderate = 0;
     for (const i of allIssues) {
       const label = getSeverityLabel(i.severityScore);
       if (label === 'Critical') critical++;
@@ -113,7 +115,7 @@ export default function App() {
       All: allIssues.length,
       Critical: critical,
       Important: important,
-      Moderate: moderate,
+      Moderate: moderate
     } as Record<FilterKey, number>;
   }, [allIssues]);
 
@@ -160,7 +162,7 @@ export default function App() {
           'inline-flex items-center gap-1 rounded-full border px-3 py-1 text-xs font-medium transition',
           active
             ? 'bg-white text-blue-700 border-white'
-            : 'bg-blue-700/30 text-white border-white/30 hover:bg-blue-600/40',
+            : 'bg-blue-700/30 text-white border-white/30 hover:bg-blue-600/40'
         ].join(' ')}
       >
         {name} ({counts[name]})
@@ -168,9 +170,18 @@ export default function App() {
     );
   }
 
-  return (
+  return view === 'settings' ? (
+    <Settings
+      issues={allIssues}
+      onBack={() => {
+        setView('main');
+        setOpen(false);
+        setSelected(null);
+      }}
+    />
+  ) : (
     <div className="h-screen w-screen flex flex-col overflow-hidden bg-white">
-      {/* Page-wide fixed header with filter pills */}
+      {/* Page-wide fixed header with sort + filters + settings */}
       <header className="flex items-center justify-between px-6 py-4 bg-blue-800 text-white shadow-md">
         <div className="flex items-center gap-3">
           <div className="font-semibold text-lg">Security Issues</div>
@@ -207,6 +218,18 @@ export default function App() {
             <Pill name="Moderate" />
           </div>
         </div>
+
+        {/* Settings button (right side) */}
+        <button
+          onClick={() => {
+            setView('settings');
+            setOpen(false);
+            setSelected(null);
+          }}
+          className="rounded-full border border-white/30 bg-blue-700/30 text-white text-xs font-medium px-3 py-1 hover:bg-blue-600/40"
+        >
+          Settings
+        </button>
       </header>
 
       {/* Content area below header */}
