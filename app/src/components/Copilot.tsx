@@ -14,6 +14,7 @@ export default function Copilot({ issue }: Props) {
   const [justSwitched, setJustSwitched] = useState<boolean>(false);
 
   useEffect(() => {
+    // When switching issues, clear chat and show a friendly placeholder
     setReply('');
     setQuestion('');
     setLoading(false);
@@ -38,9 +39,11 @@ export default function Copilot({ issue }: Props) {
       );
     }
     if (typeof i.severityScore === 'number') {
-      const label = i.severityScore >= 0.9 ? 'Critical' : i.severityScore >= 0.61 ? 'Important' : 'Moderate';
+      const label =
+        i.severityScore >= 0.9 ? 'Critical' : i.severityScore >= 0.61 ? 'Important' : 'Moderate';
       lines.push(`Severity: ${label} (${i.severityScore})`);
     }
+    if (i.category) lines.push(`Category: ${i.category}`);
     if (i.reference) lines.push(`Reference URL: ${i.reference}`);
     return lines.join('\n');
   }
@@ -59,15 +62,18 @@ export default function Copilot({ issue }: Props) {
       if (issue.reference) {
         const { results } = await scrape([issue.reference]);
         sources = results
-          .filter((r) => r.ok && r.text)
-          .map((r) => ({ url: r.url, text: r.text as string }));
+          .filter((r: any) => r.ok && r.text)
+          .map((r: any) => ({ url: r.url, text: r.text as string }));
       }
 
       // 2) Build a single "user" message containing Issue Context + Question
       const contextBlock = buildIssueContext(issue);
-      const bundled = `Context:\n${contextBlock}\n\nQuestion:\n${q}\n\nPlease answer based on the context and the reference. If steps are needed, format them clearly.`;
+      const bundled =
+        `Context:\n${contextBlock}\n\n` +
+        `Question:\n${q}\n\n` +
+        `Please answer based on the context and the reference. If steps are needed, format them clearly using markdown.`;
 
-      // 3) Send to Chat endpoint (server will still add its own system prompt + include sources)
+      // 3) Send to Chat endpoint
       const r = await rawChat({
         messages: [{ role: 'user', content: bundled }],
         sources,
@@ -93,7 +99,7 @@ export default function Copilot({ issue }: Props) {
     'px-3 py-2 rounded-lg border border-blue-600 text-blue-600 bg-white hover:bg-blue-50 ' +
     'focus:outline-none focus:ring-2 focus:ring-blue-200 disabled:opacity-50 text-sm';
 
-  // Severity icon (already added earlier)
+  // Severity icon
   const severityIcon =
     typeof issue?.severityScore === 'number'
       ? issue.severityScore <= 0.6
@@ -104,7 +110,7 @@ export default function Copilot({ issue }: Props) {
       : null;
 
   return (
-    <div className="h-full flex flex-col px-20">
+    <div className="h-full flex flex-col px-[60px]"> {/* tripled side margins */}
       {/* Issue title with severity icon */}
       {issue?.name ? (
         <div className="pt-6 pb-4 flex items-center gap-2">
@@ -187,9 +193,9 @@ export default function Copilot({ issue }: Props) {
         </div>
       ) : null}
 
-      {/* Chat area (drawer handles scrolling) */}
+      {/* Chat area */}
       <div className="py-6">
-        <div className="w-full rounded-lg bg-gray-50 p-4">
+        <div className="w-full rounded-lg bg-white p-0">
           {loading ? (
             <Placeholder
               title="Thinking…"
@@ -207,11 +213,7 @@ export default function Copilot({ issue }: Props) {
             />
           ) : justSwitched ? (
             <Placeholder
-<<<<<<< HEAD
               title="Switched issue"
-=======
-              title="...temp1" // "Switched issue"
->>>>>>> 8698c50 (Add Settings table with kebab menu (Edit/Delete) and server API for issues)
               subtitle="Choose one of the fixed options or type your question."
             />
           ) : (
