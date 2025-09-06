@@ -40,4 +40,14 @@ export async function rawChat(body: any) {
   return data as { reply: string };
 }
 
+export async function createIssue(payload: any) {
+  const r = await fetch(url('/api/issues'), {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+  if (!r.ok) throw new Error(`Create failed: ${r.status}`);
+  return r.json();
+}
+
 export async function copilot(body: any) { return rawChat(body); }

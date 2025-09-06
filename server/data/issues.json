@@ -308,7 +308,7 @@
             {
               "sem_template": {
                 "sem_header": "Ransomware Protection Disabled: CryptoWall",
-                "sem_long_description": "CryptoWall is a type of ransomware known for encrypting files on a victim\u2019s computer and demanding ransom for the decryption key. Enabling CryptoWall protection is essential to safeguard your systems from this specific ransomware threat. The absence of this protection exposes your network to potential encryption attacks, leading to data loss and significant operational disruption. We recommend promptly enabling CryptoWall protection to mitigate these risks and enhance your overall security posture.",
+                "sem_long_description": "CryptoWall is a type of ransomware known for encrypting files on a victim’s computer and demanding ransom for the decryption key. Enabling CryptoWall protection is essential to safeguard your systems from this specific ransomware threat. The absence of this protection exposes your network to potential encryption attacks, leading to data loss and significant operational disruption. We recommend promptly enabling CryptoWall protection to mitigate these risks and enhance your overall security posture.",
                 "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
                 "severity_score": 0.6,
                 "sem_category": "configuration_changes"
@@ -452,7 +452,7 @@
             {
               "sem_template": {
                 "sem_header": "Execution Blocking for Suspicious Processes on macOS Disabled",
-                "sem_long_description": "This security feature is critical in preventing potentially harmful software from executing, thereby safeguarding your systems against malware, ransomware, and other malicious activities that could compromise data integrity and privacy. It is essential to enable this feature to automatically block executions of processes that are identified as suspicious by Crowdstrike\u2019s threat intelligence. Enabling this feature provides a proactive layer of defense, reducing the risk of security breaches and enhancing overall endpoint security.",
+                "sem_long_description": "This security feature is critical in preventing potentially harmful software from executing, thereby safeguarding your systems against malware, ransomware, and other malicious activities that could compromise data integrity and privacy. It is essential to enable this feature to automatically block executions of processes that are identified as suspicious by Crowdstrike’s threat intelligence. Enabling this feature provides a proactive layer of defense, reducing the risk of security breaches and enhancing overall endpoint security.",
                 "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
                 "severity_score": 0.6,
                 "sem_category": "configuration_changes"
@@ -483,6 +483,39 @@
                 "sem_resolution_instruction": "https://supportportal.crowdstrike.com",
                 "severity_score": 0.6,
                 "sem_category": "configuration_changes"
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "a",
+                "sem_category": "Configuration Changes",
+                "severity_score": 0.5,
+                "sem_long_description": "",
+                "sem_recommendations": [],
+                "sem_resolution_instruction": []
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "aa My Issue 1",
+                "sem_category": "Network Exposures",
+                "severity_score": 0.95,
+                "sem_long_description": "bullet1\nbullet2",
+                "sem_recommendations": [],
+                "sem_resolution_instruction": []
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "aaa issues 111",
+                "sem_category": "Configuration Changes",
+                "severity_score": 0.1,
+                "sem_long_description": "xxx",
+                "sem_recommendations": [
+                  "bullet 11",
+                  "bullet 22"
+                ],
+                "sem_resolution_instruction": []
               }
             }
           ]
@@ -871,7 +904,7 @@
             {
               "sem_template": {
                 "sem_header": "Advisory: SonicWall Devices May Be at Risk",
-                "sem_long_description": "At-Bay has identified that your organization may be using a SonicWall Device, which could be impacted by the CVE-2024-40766 vulnerability. The vulnerability may allow unauthorized access and, in some cases, cause firewall crashes. At-Bay strongly advises following the vendor\u2019s mitigation steps below. If you lack the resources to apply the patch, please contact your IT provider.",
+                "sem_long_description": "At-Bay has identified that your organization may be using a SonicWall Device, which could be impacted by the CVE-2024-40766 vulnerability. The vulnerability may allow unauthorized access and, in some cases, cause firewall crashes. At-Bay strongly advises following the vendor’s mitigation steps below. If you lack the resources to apply the patch, please contact your IT provider.",
                 "sem_resolution_instruction": "https://psirt.global.sonicwall.com/vuln-detail/SNWLID-2024-0015",
                 "severity_score": 0.9,
                 "sem_category": "configuration_changes"
@@ -880,7 +913,7 @@
             {
               "sem_template": {
                 "sem_header": "Advisory: SonicWall SonicOS Gen 5 May Be at Risk",
-                "sem_long_description": "At-Bay has identified that your organization is using SonicWall SonicOS Gen 5, which may be impacted by the CVE-2024-40766 vulnerability. This vulnerability could allow unauthorized access and, in some cases, cause firewall crashes. At-Bay strongly advises following the vendor\u2019s mitigation steps: apply the patched version 5.9.2.14-13o and disable firewall WAN management access and firewall SSLVPN access as soon as possible. If you lack the resources to apply the patch, please contact your IT provider.",
+                "sem_long_description": "At-Bay has identified that your organization is using SonicWall SonicOS Gen 5, which may be impacted by the CVE-2024-40766 vulnerability. This vulnerability could allow unauthorized access and, in some cases, cause firewall crashes. At-Bay strongly advises following the vendor’s mitigation steps: apply the patched version 5.9.2.14-13o and disable firewall WAN management access and firewall SSLVPN access as soon as possible. If you lack the resources to apply the patch, please contact your IT provider.",
                 "sem_resolution_instruction": "https://psirt.global.sonicwall.com/vuln-detail/SNWLID-2024-0015",
                 "severity_score": 0.9,
                 "sem_category": "configuration_changes"
@@ -916,7 +949,7 @@
             {
               "sem_template": {
                 "sem_header": "Advisory: SonicWall SonicOS Gen 7 May Be at Risk",
-                "sem_long_description": "At-Bay has identified that your organization is using SonicWall SonicOS Gen 7, which may be impacted by the CVE-2024-40766 vulnerability. This vulnerability could allow unauthorized access and, in some cases, cause firewall crashes. At-Bay strongly advises following the vendor\u2019s mitigation steps: apply the patched version 7.0.1-5035 or higher and disable firewall WAN management access and firewall SSLVPN access as soon as possible. If you lack the resources to apply the patch, please contact your IT provider.",
+                "sem_long_description": "At-Bay has identified that your organization is using SonicWall SonicOS Gen 7, which may be impacted by the CVE-2024-40766 vulnerability. This vulnerability could allow unauthorized access and, in some cases, cause firewall crashes. At-Bay strongly advises following the vendor’s mitigation steps: apply the patched version 7.0.1-5035 or higher and disable firewall WAN management access and firewall SSLVPN access as soon as possible. If you lack the resources to apply the patch, please contact your IT provider.",
                 "sem_resolution_instruction": "https://psirt.global.sonicwall.com/vuln-detail/SNWLID-2024-0015",
                 "severity_score": 0.9,
                 "sem_category": "configuration_changes"
@@ -1131,7 +1164,7 @@
             {
               "sem_template": {
                 "sem_header": "Advisory: SonicWall SonicOS Gen 6 May Be at Risk",
-                "sem_long_description": "At-Bay has identified that your organization is using SonicWall SonicOS Gen 6, which may be impacted by the CVE-2024-40766 vulnerability. This vulnerability could allow unauthorized access and, in some cases, cause firewall crashes. At-Bay strongly advises following the vendor\u2019s mitigation steps: apply the patched version 6.5.2.8-2n (for SM9800, NSsp 12400, NSsp 12800 or 6.5.4.15.116n (for other Gen6 Firewall appliances) and disable firewall WAN management access and firewall SSLVPN access as soon as possible. If you lack the resources to apply the patch, please contact your IT provider.",
+                "sem_long_description": "At-Bay has identified that your organization is using SonicWall SonicOS Gen 6, which may be impacted by the CVE-2024-40766 vulnerability. This vulnerability could allow unauthorized access and, in some cases, cause firewall crashes. At-Bay strongly advises following the vendor’s mitigation steps: apply the patched version 6.5.2.8-2n (for SM9800, NSsp 12400, NSsp 12800 or 6.5.4.15.116n (for other Gen6 Firewall appliances) and disable firewall WAN management access and firewall SSLVPN access as soon as possible. If you lack the resources to apply the patch, please contact your IT provider.",
                 "sem_resolution_instruction": "https://psirt.global.sonicwall.com/vuln-detail/SNWLID-2024-0015",
                 "severity_score": 0.9,
                 "sem_category": "configuration_changes"
@@ -1563,7 +1596,7 @@
             {
               "sem_template": {
                 "sem_header": "Cisco Adaptive Security Appliance (ASA) and Cisco Firepower Threat Defense (FTD) Brute Force Attack Vulnerability",
-                "sem_long_description": "At-Bay discovered that your organization may be using a vulnerable Cisco VPN. At-Bay recommends following Cisco\u2019s recommendations to mitigate this exposure. If you do not have in-house technical resources to implement this fix, please contact your IT provider.",
+                "sem_long_description": "At-Bay discovered that your organization may be using a vulnerable Cisco VPN. At-Bay recommends following Cisco’s recommendations to mitigate this exposure. If you do not have in-house technical resources to implement this fix, please contact your IT provider.",
                 "sem_resolution_instruction": "https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-asaftd-ravpn-auth-8LyfCkeC",
                 "severity_score": 0.6,
                 "sem_category": "configuration_changes"
