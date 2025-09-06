@@ -19,3 +19,4 @@ server/dist/
 npm-debug.log*
 yarn-debug.log*
 pnpm-debug.log*
+server/data/issues.json
