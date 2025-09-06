@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-import React from 'react';
-import type { Issue } from '../types';
-=======
 import React, { useMemo, useState } from 'react';
 import type { Issue } from '../types';
 import { deleteIssue, updateIssue, getIssues } from '../lib/api';
->>>>>>> 8698c50 (Add Settings table with kebab menu (Edit/Delete) and server API for issues)
 
 type Props = {
   issues: Issue[];
@@ -20,22 +15,18 @@ function sevLabel(score?: number): string {
 }
 
 export default function Settings({ issues, onBack }: Props) {
-<<<<<<< HEAD
-  return (
-    <div className="h-screen w-screen flex flex-col bg-white">
-      {/* Header */}
-=======
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [editing, setEditing] = useState<Issue | null>(null);
   const [busy, setBusy] = useState(false);
   const [localIssues, setLocalIssues] = useState<Issue[]>(issues);
 
-  // keep local table fresh if parent issues changes
+  // keep table in sync if parent issues change
   useMemo(() => setLocalIssues(issues), [issues]);
 
   async function refreshFromServer() {
     const data = await getIssues();
-    // lightweight extractor (copy/paste from App if needed)
+
+    // minimal extractor (same as in App.tsx)
     function normalizeUrl(u?: string | null): string | null {
       if (!u) return null;
       const s = String(u).trim();
@@ -55,14 +46,16 @@ export default function Settings({ issues, onBack }: Props) {
       const parts = str.split(/\r?\n|•|- |\u2022/).map((x) => x.trim()).filter(Boolean);
       return (parts.length ? parts : [str]) as string[];
     }
+
     const out: Issue[] = [];
     const seen = new Set<string>();
     for (const section of data.sections || []) {
       for (const sub of section.sub_sections || []) {
         for (const ft of sub.finding_templates || []) {
           const st = ft?.sem_template || {};
-          const name = st.sem_header;
+          const name = st.sem_header as string | undefined;
           if (!name || seen.has(name)) continue;
+
           let reference: string | undefined;
           const instr = st.sem_resolution_instruction;
           if (Array.isArray(instr)) {
@@ -73,10 +66,10 @@ export default function Settings({ issues, onBack }: Props) {
           } else {
             reference = normalizeUrl(instr) ?? undefined;
           }
+
           const description: string | undefined = st.sem_long_description || undefined;
           const recommendations = normalizeRecommendations(st.sem_recommendations);
-          const severityScore =
-            st.severity_score != null ? Number(st.severity_score) : undefined;
+          const severityScore = st.severity_score != null ? Number(st.severity_score) : undefined;
           const category: string | undefined = st.sem_category || undefined;
 
           out.push({ id: name, name, reference, description, recommendations, severityScore, category });
@@ -91,7 +84,7 @@ export default function Settings({ issues, onBack }: Props) {
     if (!window.confirm(`Delete issue "${issue.name}"? This cannot be undone.`)) return;
     try {
       setBusy(true);
-      await deleteIssue(issue.id); // id is the title
+      await deleteIssue(issue.id); // id = sem_header
       await refreshFromServer();
     } catch (e: any) {
       alert(`Delete failed: ${e?.message || String(e)}`);
@@ -142,7 +135,7 @@ export default function Settings({ issues, onBack }: Props) {
 
   return (
     <div className="h-screen w-screen flex flex-col bg-white">
->>>>>>> 8698c50 (Add Settings table with kebab menu (Edit/Delete) and server API for issues)
+      {/* Header */}
       <header className="flex items-center justify-between px-6 py-4 bg-blue-800 text-white shadow-md">
         <div className="font-semibold text-lg">Settings</div>
         <button
@@ -153,30 +146,12 @@ export default function Settings({ issues, onBack }: Props) {
         </button>
       </header>
 
-<<<<<<< HEAD
       {/* Content */}
-=======
->>>>>>> 8698c50 (Add Settings table with kebab menu (Edit/Delete) and server API for issues)
       <div className="flex-1 overflow-auto p-6">
         <div className="overflow-x-auto rounded-lg border border-gray-200">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-<<<<<<< HEAD
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
-                  Title
-                </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
-                  Finding Category
-                </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
-                  Severity Score
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-100 bg-white">
-              {issues.map((i) => (
-=======
                 <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Title</th>
                 <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Finding Category</th>
                 <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Severity Score</th>
@@ -185,20 +160,10 @@ export default function Settings({ issues, onBack }: Props) {
             </thead>
             <tbody className="divide-y divide-gray-100 bg-white">
               {localIssues.map((i) => (
->>>>>>> 8698c50 (Add Settings table with kebab menu (Edit/Delete) and server API for issues)
                 <tr key={i.id} className="hover:bg-gray-50">
                   <td className="px-4 py-3 text-sm text-gray-800">{i.name}</td>
                   <td className="px-4 py-3 text-sm text-gray-700">{i.category || '—'}</td>
                   <td className="px-4 py-3 text-sm text-gray-700">{sevLabel(i.severityScore)}</td>
-<<<<<<< HEAD
-                </tr>
-              ))}
-              {issues.length === 0 && (
-                <tr>
-                  <td colSpan={3} className="px-4 py-6 text-center text-sm text-gray-500">
-                    No issues found.
-                  </td>
-=======
                   <td className="px-2 py-3 text-right">
                     <Kebab id={i.id} />
                   </td>
@@ -206,19 +171,19 @@ export default function Settings({ issues, onBack }: Props) {
               ))}
               {localIssues.length === 0 && (
                 <tr>
-                  <td colSpan={4} className="px-4 py-6 text-center text-sm text-gray-500">No issues found.</td>
->>>>>>> 8698c50 (Add Settings table with kebab menu (Edit/Delete) and server API for issues)
+                  <td colSpan={4} className="px-4 py-6 text-center text-sm text-gray-500">
+                    No issues found.
+                  </td>
                 </tr>
               )}
             </tbody>
           </table>
         </div>
-<<<<<<< HEAD
-=======
+
         {busy && <div className="mt-3 text-xs text-gray-500">Working…</div>}
       </div>
 
-      {/* Simple Edit modal */}
+      {/* Edit modal */}
       {editing && (
         <EditDialog
           issue={editing}
@@ -226,7 +191,7 @@ export default function Settings({ issues, onBack }: Props) {
           onSave={async (updated) => {
             try {
               setBusy(true);
-              // Send patch to server; id is the ORIGINAL title (editing.name is new name)
+              // PATCH the issue on the server (id is ORIGINAL title; name may change)
               await updateIssue(editing.id, {
                 sem_header: updated.name,
                 sem_category: updated.category,
@@ -270,45 +235,65 @@ function EditDialog({
           <div className="font-semibold">Edit Issue</div>
           <button onClick={onClose} className="text-gray-500 hover:text-gray-700">✕</button>
         </div>
+
         <div className="p-4 space-y-3">
           <label className="block text-sm">
             <span className="text-gray-700">Title</span>
-            <input className="mt-1 w-full border rounded px-3 py-2"
-              value={name} onChange={(e) => setName(e.target.value)} />
+            <input
+              className="mt-1 w-full border rounded px-3 py-2"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
           </label>
 
           <div className="grid grid-cols-2 gap-3">
             <label className="block text-sm">
               <span className="text-gray-700">Finding Category</span>
-              <input className="mt-1 w-full border rounded px-3 py-2"
-                value={category} onChange={(e) => setCategory(e.target.value)} />
+              <input
+                className="mt-1 w-full border rounded px-3 py-2"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+              />
             </label>
             <label className="block text-sm">
               <span className="text-gray-700">Severity Score (0–1)</span>
-              <input type="number" step="0.01" min="0" max="1"
+              <input
+                type="number" step="0.01" min="0" max="1"
                 className="mt-1 w-full border rounded px-3 py-2"
-                value={severity} onChange={(e) => setSeverity(parseFloat(e.target.value))} />
+                value={severity}
+                onChange={(e) => setSeverity(parseFloat(e.target.value))}
+              />
             </label>
           </div>
 
           <label className="block text-sm">
             <span className="text-gray-700">Reference (single URL)</span>
-            <input className="mt-1 w-full border rounded px-3 py-2"
-              value={reference} onChange={(e) => setReference(e.target.value)} />
+            <input
+              className="mt-1 w-full border rounded px-3 py-2"
+              value={reference}
+              onChange={(e) => setReference(e.target.value)}
+            />
           </label>
 
           <label className="block text-sm">
             <span className="text-gray-700">Description</span>
-            <textarea className="mt-1 w-full border rounded px-3 py-2 h-24"
-              value={description} onChange={(e) => setDescription(e.target.value)} />
+            <textarea
+              className="mt-1 w-full border rounded px-3 py-2 h-24"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
           </label>
 
           <label className="block text-sm">
             <span className="text-gray-700">Recommendations (one per line)</span>
-            <textarea className="mt-1 w-full border rounded px-3 py-2 h-24"
-              value={recs} onChange={(e) => setRecs(e.target.value)} />
+            <textarea
+              className="mt-1 w-full border rounded px-3 py-2 h-24"
+              value={recs}
+              onChange={(e) => setRecs(e.target.value)}
+            />
           </label>
         </div>
+
         <div className="px-4 py-3 border-t flex items-center justify-end gap-2">
           <button onClick={onClose} className="px-3 py-2 rounded border text-sm">Cancel</button>
           <button
@@ -328,7 +313,6 @@ function EditDialog({
             Save
           </button>
         </div>
->>>>>>> 8698c50 (Add Settings table with kebab menu (Edit/Delete) and server API for issues)
       </div>
     </div>
   );
