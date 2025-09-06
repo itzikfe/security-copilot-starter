@@ -1,8 +1,10 @@
 export type Issue = {
   id: string;
   name: string;
-  reference?: string;
   description?: string;
   recommendations?: string[];
-  severityScore?: number; // 👈 new
+  reference?: string;
+  severityScore?: number;
+  /** New: from sem_template.sem_category */
+  category?: string;
 };
