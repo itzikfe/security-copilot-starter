@@ -48,7 +48,10 @@ function extractIssues(data: any): Issue[] {
         if (Array.isArray(instr)) {
           for (const candidate of instr) {
             const norm = normalizeUrl(typeof candidate === 'string' ? candidate : String(candidate));
-            if (norm) { reference = norm; break; }
+            if (norm) {
+              reference = norm;
+              break;
+            }
           }
         } else {
           reference = normalizeUrl(instr) ?? undefined;
@@ -89,15 +92,6 @@ function getSeverityLabel(score?: number): 'Critical' | 'Important' | 'Moderate'
   return 'Moderate';
 }
 
-// Sort order mapping: Critical > Important > Moderate > Unknown
-function severityRank(score?: number): number {
-  const label = getSeverityLabel(score);
-  if (label === 'Critical') return 1;
-  if (label === 'Important') return 2;
-  if (label === 'Moderate') return 3;
-  return 4;
-}
-
 export default function App() {
   const allIssues = useMemo(() => extractIssues(raw), []);
   const [selected, setSelected] = useState<Issue | null>(null);
@@ -106,7 +100,9 @@ export default function App() {
   const [sortBy, setSortBy] = useState<SortKey>('Severity');
 
   const counts = useMemo(() => {
-    let critical = 0, important = 0, moderate = 0;
+    let critical = 0,
+      important = 0,
+      moderate = 0;
     for (const i of allIssues) {
       const label = getSeverityLabel(i.severityScore);
       if (label === 'Critical') critical++;
@@ -117,21 +113,19 @@ export default function App() {
       All: allIssues.length,
       Critical: critical,
       Important: important,
-      Moderate: moderate
+      Moderate: moderate,
     } as Record<FilterKey, number>;
   }, [allIssues]);
 
   const issues = useMemo(() => {
-    let filtered: Issue[];
-    if (filter === 'All') filtered = allIssues;
-    else filtered = allIssues.filter((i) => getSeverityLabel(i.severityScore) === filter);
-
-    // Apply sorting
+    let filtered =
+      filter === 'All' ? allIssues : allIssues.filter((i) => getSeverityLabel(i.severityScore) === filter);
     if (sortBy === 'A–Z') {
-      return [...filtered].sort((a, b) => a.name.localeCompare(b.name));
+      filtered = [...filtered].sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortBy === 'Severity') {
+      filtered = [...filtered].sort((a, b) => (b.severityScore ?? 0) - (a.severityScore ?? 0));
     }
-    // Default: Severity
-    return [...filtered].sort((a, b) => severityRank(a.severityScore) - severityRank(b.severityScore));
+    return filtered;
   }, [allIssues, filter, sortBy]);
 
   const index = useMemo(
@@ -166,7 +160,7 @@ export default function App() {
           'inline-flex items-center gap-1 rounded-full border px-3 py-1 text-xs font-medium transition',
           active
             ? 'bg-white text-blue-700 border-white'
-            : 'bg-blue-700/30 text-white border-white/30 hover:bg-blue-600/40'
+            : 'bg-blue-700/30 text-white border-white/30 hover:bg-blue-600/40',
         ].join(' ')}
       >
         {name} ({counts[name]})
@@ -176,28 +170,42 @@ export default function App() {
 
   return (
     <div className="h-screen w-screen flex flex-col overflow-hidden bg-white">
-      {/* Page-wide fixed header with filters + sorting */}
+      {/* Page-wide fixed header with filter pills */}
       <header className="flex items-center justify-between px-6 py-4 bg-blue-800 text-white shadow-md">
         <div className="flex items-center gap-3">
           <div className="font-semibold text-lg">Security Issues</div>
+
+          {/* Sort dropdown styled as pill with SVG chevron */}
+          <div className="relative">
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value as SortKey)}
+              className="rounded-full border border-white/30 bg-blue-700/30 text-white text-xs font-medium px-3 py-1
+                         hover:bg-blue-600/40 focus:outline-none focus:ring-2 focus:ring-white/50 pr-8 appearance-none"
+            >
+              <option value="Severity">Sort by Severity</option>
+              <option value="A–Z">Sort A–Z</option>
+            </select>
+            {/* Chevron SVG */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 h-3 w-3 text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+
+          {/* Filters */}
           <div className="flex items-center gap-2">
             <Pill name="All" />
             <Pill name="Critical" />
             <Pill name="Important" />
             <Pill name="Moderate" />
           </div>
-        </div>
-
-        {/* Sorting dropdown */}
-        <div>
-          <select
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value as SortKey)}
-            className="rounded-md bg-white text-slate-800 text-sm px-2 py-1"
-          >
-            <option value="Severity">Sort by Severity</option>
-            <option value="A–Z">Sort A–Z</option>
-          </select>
         </div>
       </header>
 
