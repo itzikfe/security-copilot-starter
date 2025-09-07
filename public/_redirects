@@ -1,0 +1,3 @@
+/api/scrape  https://security-copilot-starter.onrender.com/api/scrape  200
+/api/*  https://security-copilot-starter.onrender.com/api/:splat  200
+
