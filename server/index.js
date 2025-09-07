@@ -17,7 +17,7 @@ app.use(
     origin: [
       'http://localhost:5173',               // Vite dev
       'http://localhost:5050',               // (optional) local checks
-      'https://<your-netlify-site>.netlify.app', // <-- replace with your real Netlify URL
+      'https://joyful-crumble-5eafce.netlify.app', // <-- replace with your real Netlify URL
       'https://<your-custom-domain>'              // <-- optional: your custom domain
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
