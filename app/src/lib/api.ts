@@ -2,6 +2,14 @@
 const API_BASE = import.meta.env.VITE_API_BASE || '';
 const url = (p: string) => (API_BASE ? `${API_BASE}${p}` : p);
 
+const BASE = import.meta.env.VITE_API_BASE || '';
+function url(p: string) {
+  const full = `${BASE}${p}`;
+  console.log('fetch ->', full); // TEMP: see where the app is calling
+  return full;
+}
+
+
 export async function getIssues(): Promise<any> {
   const r = await fetch(url('/api/issues'));
   if (!r.ok) throw new Error(`getIssues failed: ${r.status}`);
