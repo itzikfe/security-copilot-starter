@@ -5,10 +5,16 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+import * as cheerio from 'cheerio';
+import OpenAI from 'openai';
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
 app.use(express.json({ limit: '2mb' }));
 
 // Allow dev + your production frontend (add your Netlify URL)
