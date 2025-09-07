@@ -1,1 +1,47 @@
+{
+  "sections": [
+    {
+      "title": "Default Section",
+      "sub_sections": [
+        {
+          "title": "Default Subsection",
+          "finding_templates": [
+            {
+              "sem_template": {
+                "sem_header": "Disable Legacy Authentication in Microsoft 365",
+                "sem_category": "Configuration Changes",
+                "severity_score": 0.9,
+                "sem_long_description": "Legacy authentication protocols such as IMAP, POP3, and SMTP Basic Authentication are vulnerable to password spray and brute-force attacks. Microsoft recommends disabling them to reduce the attack surface.",
+                "sem_recommendations": [
+                  "Disable legacy authentication in the Microsoft 365 Admin Center.",
+                  "Enable modern authentication for all users.",
+                  "Monitor sign-ins to verify no active use of legacy protocols."
+                ],
+                "sem_resolution_instruction": [
+                  "https://learn.microsoft.com/en-us/azure/active-directory/fundamentals/concept-fundamentals-security-defaults"
+                ]
+              }
+            },
+            {
+              "sem_template": {
+                "sem_header": "Enable Multi-Factor Authentication (MFA)",
+                "sem_category": "Security Controls",
+                "severity_score": 0.95,
+                "sem_long_description": "MFA significantly reduces the risk of account compromise by requiring an additional verification factor beyond just a password.",
+                "sem_recommendations": [
+                  "Enable MFA for all administrative accounts.",
+                  "Roll out MFA to all user accounts with a phased adoption plan.",
+                  "Use app-based authenticators instead of SMS when possible."
+                ],
+                "sem_resolution_instruction": [
+                  "https://learn.microsoft.com/en-us/azure/active-directory/authentication/tutorial-enable-azure-mfa"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
 
