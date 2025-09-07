@@ -4,7 +4,6 @@ import cors from 'cors';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-
 import * as cheerio from 'cheerio';
 import OpenAI from 'openai';
 
@@ -12,37 +11,40 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-
 app.use(express.json({ limit: '2mb' }));
 
-// Allow dev + your production frontend (add your Netlify URL)
+/* ------------------------ CORS ------------------------ */
+/* Add your production origins here */
+const ALLOWED_ORIGINS = [
+  'http://localhost:5173',                          // Vite dev
+  'http://localhost:5050',                          // local test
+  // 'https://<your-site>.netlify.app',             // Netlify
+  // 'https://<your-custom-domain>'                 // Custom domain
+];
+
+// Simple CORS that allows listed origins; allows no-origin (curl/health)
 app.use(
   cors({
-    origin: [
-      'http://localhost:5173',               // Vite dev
-      'http://localhost:5050',               // (optional) local checks
-      'https://joyful-crumble-5eafce.netlify.app', // <-- replace with your real Netlify URL
-      'https://<your-custom-domain>'              // <-- optional: your custom domain
-    ],
+    origin(origin, cb) {
+      if (!origin || ALLOWED_ORIGINS.includes(origin)) return cb(null, true);
+      return cb(new Error('CORS blocked: ' + origin));
+    },
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     credentials: false,
   })
 );
 
-// --- paths ---
-const DATA_DIR = path.join(__dirname, 'data');
+/* --------------------- Data locations --------------------- */
+const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, 'data');
 const DATA_FILE = path.join(DATA_DIR, 'issues.json');
 const SEED_FILE = path.join(__dirname, 'seed', 'issues.seed.json');
 
-// --- helpers ---
+/* --------------------- Seed helpers --------------------- */
 function ensureDir() {
   if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
 }
 
 function seedIfEmpty(obj) {
-  // if no sections or empty array → try to seed
   const empty = !obj || !Array.isArray(obj.sections) || obj.sections.length === 0;
   if (!empty) return obj;
 
@@ -51,7 +53,6 @@ function seedIfEmpty(obj) {
       const raw = fs.readFileSync(SEED_FILE, 'utf8');
       const seed = JSON.parse(raw);
       if (Array.isArray(seed.sections) && seed.sections.length > 0) {
-        // write seed as the live data
         ensureDir();
         fs.writeFileSync(DATA_FILE, JSON.stringify(seed, null, 2), 'utf8');
         return seed;
@@ -60,7 +61,6 @@ function seedIfEmpty(obj) {
       console.error('Failed to load seed file:', e);
     }
   }
-  // fallback to empty object
   return { sections: [] };
 }
 
@@ -84,17 +84,19 @@ function writeJson(obj) {
   fs.writeFileSync(DATA_FILE, JSON.stringify(obj, null, 2), 'utf8');
 }
 
-// --- routes ---
+/* ------------------------ Routes: health ------------------------ */
 app.get('/api/health', (_req, res) => {
-  res.json({ ok: true });
+  res.json({ ok: true, dataDir: DATA_DIR });
 });
 
+/* ------------------------ Routes: issues (CRUD) ------------------------ */
+// Read all issues.json (nested)
 app.get('/api/issues', (req, res) => {
   const data = readJson();
   res.json(data);
 });
 
-// Create new issue (sem_header must be unique)
+// Create new finding (sem_header must be unique)
 app.post('/api/issues', (req, res) => {
   const p = req.body || {};
   if (!p.sem_header || typeof p.sem_header !== 'string') {
@@ -103,7 +105,7 @@ app.post('/api/issues', (req, res) => {
 
   const data = readJson();
 
-  // where to insert: first section/subsection, create defaults if missing
+  // Ensure structure exists
   if (!Array.isArray(data.sections)) data.sections = [];
   if (data.sections.length === 0) data.sections.push({ title: 'Default Section', sub_sections: [] });
   const section = data.sections[0];
@@ -113,7 +115,7 @@ app.post('/api/issues', (req, res) => {
   const sub = section.sub_sections[0];
   if (!Array.isArray(sub.finding_templates)) sub.finding_templates = [];
 
-  // no duplicates by sem_header
+  // No duplicates by sem_header
   const exists = sub.finding_templates.some((ft) => ft?.sem_template?.sem_header === p.sem_header);
   if (exists) return res.status(409).json({ error: 'An issue with this sem_header already exists' });
 
@@ -136,7 +138,7 @@ app.post('/api/issues', (req, res) => {
   return res.status(201).json({ ok: true, created: sem_template });
 });
 
-// Update existing issue by id (id is the original sem_header)
+// Update existing issue by id (id is original sem_header)
 app.put('/api/issues/:id', (req, res) => {
   const id = req.params.id;
   const p = req.body || {};
@@ -189,7 +191,100 @@ app.delete('/api/issues/:id', (req, res) => {
   return res.status(404).json({ error: 'Not found' });
 });
 
-// --- start ---
+/* ------------------------ Route: scrape ------------------------ */
+// POST /api/scrape -> { urls: string[] } -> { results: [{url, ok, text?, status?}] }
+app.post('/api/scrape', async (req, res) => {
+  try {
+    const { urls } = req.body || {};
+    if (!Array.isArray(urls) || urls.length === 0) {
+      return res.status(400).json({ error: 'urls must be a non-empty array of strings' });
+    }
+
+    const out = await Promise.all(
+      urls.map(async (u) => {
+        const url = String(u || '').trim();
+        if (!url) return { url, ok: false, status: 400 };
+        try {
+          const controller = new AbortController();
+          const t = setTimeout(() => controller.abort(), 15000);
+          const r = await fetch(url, { signal: controller.signal, redirect: 'follow' });
+          clearTimeout(t);
+          if (!r.ok) return { url, ok: false, status: r.status };
+
+          const html = await r.text();
+          const $ = cheerio.load(html);
+          $('script, style, noscript').remove();
+          $('[aria-hidden="true"], [style*="display:none"]').remove();
+
+          const text = $('body').text().replace(/\s+/g, ' ').trim();
+          const MAX = 15000;
+          const clipped = text.length > MAX ? text.slice(0, MAX) : text;
+
+          return { url, ok: true, text: clipped };
+        } catch (e) {
+          return { url, ok: false, status: 0 };
+        }
+      })
+    );
+
+    res.json({ results: out });
+  } catch (e) {
+    console.error('scrape error:', e);
+    res.status(500).json({ error: 'scrape failed' });
+  }
+});
+
+/* ------------------------ Route: chat (OpenAI) ------------------------ */
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+// POST /api/chat -> { messages: [...], sources?: [{url,text}] } -> { reply }
+app.post('/api/chat', async (req, res) => {
+  try {
+    const { messages, sources } = req.body || {};
+    if (!Array.isArray(messages) || messages.length === 0) {
+      return res.status(400).json({ error: 'messages must be a non-empty array' });
+    }
+    if (!process.env.OPENAI_API_KEY) {
+      return res.status(401).json({ error: 'Missing OPENAI_API_KEY on server' });
+    }
+
+    // Attach sources (if any) into a system message
+    const sourceBlock =
+      Array.isArray(sources) && sources.length
+        ? `\n\nUse these references when helpful:\n${sources
+            .map((s, i) => `(${i + 1}) ${s.url}\n${(s.text || '').slice(0, 1200)}\n`)
+            .join('\n')}`
+        : '';
+
+    const systemMsg = {
+      role: 'system',
+      content:
+        'You are a security remediation copilot. Be concise, step-by-step, and cite references when possible.' +
+        sourceBlock,
+    };
+
+    const msgPayload = [systemMsg, ...messages];
+
+    const resp = await openai.chat.completions.create({
+      model: 'gpt-4o-mini', // choose a model available on your account
+      temperature: 0.2,
+      messages: msgPayload,
+    });
+
+    const reply = resp.choices?.[0]?.message?.content || '';
+    res.json({ reply });
+  } catch (e) {
+    console.error('chat error:', e);
+    const msg =
+      e?.response?.data?.error?.message ||
+      e?.error?.message ||
+      e?.message ||
+      'chat failed';
+    res.status(500).json({ error: msg });
+  }
+});
+
+/* ------------------------ Start ------------------------ */
 const PORT = process.env.PORT || 5050;
 app.listen(PORT, () => {
   console.log(`Server listening on :${PORT}`);
