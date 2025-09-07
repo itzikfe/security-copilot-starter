@@ -11,35 +11,41 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+
+/* ---------- JSON body parsing (must be before routes) ---------- */
 app.use(express.json({ limit: '2mb' }));
 
-/* ------------------------ CORS ------------------------ */
-/* Add your production origins here */
-const ALLOWED_ORIGINS = [
-  'http://localhost:5173',                          // Vite dev
-  'http://localhost:5050',                          // local test
-  // 'https://<your-site>.netlify.app',             // Netlify
-  // 'https://<your-custom-domain>'                 // Custom domain
-];
+/* ---------- CORS (allow your Netlify + localhost) ---------- */
+const ALLOWED_ORIGINS = new Set([
+  'http://localhost:5173',                        // Vite dev
+  'https://joyful-crumble-5eafce.netlify.app',   // your Netlify site
+  // 'https://your-custom-domain.com',            // add if/when you use one
+  // 'https://www.your-custom-domain.com',
+]);
 
-// Simple CORS that allows listed origins; allows no-origin (curl/health)
+function corsOrigin(origin, cb) {
+  // allow server-to-server/no-origin (curl/health) and listed origins
+  if (!origin || ALLOWED_ORIGINS.has(origin)) return cb(null, true);
+  return cb(new Error('CORS blocked: ' + origin));
+}
+
 app.use(
   cors({
-    origin(origin, cb) {
-      if (!origin || ALLOWED_ORIGINS.includes(origin)) return cb(null, true);
-      return cb(new Error('CORS blocked: ' + origin));
-    },
+    origin: corsOrigin,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    credentials: false,
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    optionsSuccessStatus: 204,
   })
 );
+// Preflight for all routes
+app.options('*', cors({ origin: corsOrigin }));
 
-/* --------------------- Data locations --------------------- */
+/* ---------- Data locations (supports Render Disk via DATA_DIR) ---------- */
 const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, 'data');
 const DATA_FILE = path.join(DATA_DIR, 'issues.json');
 const SEED_FILE = path.join(__dirname, 'seed', 'issues.seed.json');
 
-/* --------------------- Seed helpers --------------------- */
+/* ---------- Seed helpers ---------- */
 function ensureDir() {
   if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
 }
@@ -84,19 +90,19 @@ function writeJson(obj) {
   fs.writeFileSync(DATA_FILE, JSON.stringify(obj, null, 2), 'utf8');
 }
 
-/* ------------------------ Routes: health ------------------------ */
+/* ---------- Health ---------- */
 app.get('/api/health', (_req, res) => {
   res.json({ ok: true, dataDir: DATA_DIR });
 });
 
-/* ------------------------ Routes: issues (CRUD) ------------------------ */
-// Read all issues.json (nested)
+/* ---------- Issues (CRUD) ---------- */
+// GET all (nested shape)
 app.get('/api/issues', (req, res) => {
   const data = readJson();
   res.json(data);
 });
 
-// Create new finding (sem_header must be unique)
+// POST create new finding
 app.post('/api/issues', (req, res) => {
   const p = req.body || {};
   if (!p.sem_header || typeof p.sem_header !== 'string') {
@@ -105,7 +111,7 @@ app.post('/api/issues', (req, res) => {
 
   const data = readJson();
 
-  // Ensure structure exists
+  // Ensure base structure
   if (!Array.isArray(data.sections)) data.sections = [];
   if (data.sections.length === 0) data.sections.push({ title: 'Default Section', sub_sections: [] });
   const section = data.sections[0];
@@ -115,7 +121,7 @@ app.post('/api/issues', (req, res) => {
   const sub = section.sub_sections[0];
   if (!Array.isArray(sub.finding_templates)) sub.finding_templates = [];
 
-  // No duplicates by sem_header
+  // Unique by sem_header
   const exists = sub.finding_templates.some((ft) => ft?.sem_template?.sem_header === p.sem_header);
   if (exists) return res.status(409).json({ error: 'An issue with this sem_header already exists' });
 
@@ -138,7 +144,7 @@ app.post('/api/issues', (req, res) => {
   return res.status(201).json({ ok: true, created: sem_template });
 });
 
-// Update existing issue by id (id is original sem_header)
+// PUT update by id (id = original sem_header)
 app.put('/api/issues/:id', (req, res) => {
   const id = req.params.id;
   const p = req.body || {};
@@ -171,7 +177,7 @@ app.put('/api/issues/:id', (req, res) => {
   return res.status(404).json({ error: 'Not found' });
 });
 
-// Delete by id (id is sem_header)
+// DELETE by id (id = sem_header)
 app.delete('/api/issues/:id', (req, res) => {
   const id = req.params.id;
   const data = readJson();
@@ -191,7 +197,7 @@ app.delete('/api/issues/:id', (req, res) => {
   return res.status(404).json({ error: 'Not found' });
 });
 
-/* ------------------------ Route: scrape ------------------------ */
+/* ---------- Scrape ---------- */
 // POST /api/scrape -> { urls: string[] } -> { results: [{url, ok, text?, status?}] }
 app.post('/api/scrape', async (req, res) => {
   try {
@@ -234,7 +240,7 @@ app.post('/api/scrape', async (req, res) => {
   }
 });
 
-/* ------------------------ Route: chat (OpenAI) ------------------------ */
+/* ---------- Chat (OpenAI) ---------- */
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 // POST /api/chat -> { messages: [...], sources?: [{url,text}] } -> { reply }
@@ -248,7 +254,6 @@ app.post('/api/chat', async (req, res) => {
       return res.status(401).json({ error: 'Missing OPENAI_API_KEY on server' });
     }
 
-    // Attach sources (if any) into a system message
     const sourceBlock =
       Array.isArray(sources) && sources.length
         ? `\n\nUse these references when helpful:\n${sources
@@ -284,7 +289,7 @@ app.post('/api/chat', async (req, res) => {
   }
 });
 
-/* ------------------------ Start ------------------------ */
+/* ---------- Start ---------- */
 const PORT = process.env.PORT || 5050;
 app.listen(PORT, () => {
   console.log(`Server listening on :${PORT}`);
