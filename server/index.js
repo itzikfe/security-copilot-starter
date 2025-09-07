@@ -30,8 +30,6 @@ app.use(
   })
 );
 
-const DATA_DIR = path.join(__dirname, 'data');
-const DATA_FILE = path.join(DATA_DIR, 'issues.json');
 
 // --- helpers ---
 function ensureDir() {
