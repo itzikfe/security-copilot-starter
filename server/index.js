@@ -5,6 +5,11 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+// --- paths ---
+const DATA_DIR = path.join(__dirname, 'data');
+const DATA_FILE = path.join(DATA_DIR, 'issues.json');
+const SEED_FILE = path.join(__dirname, 'seed', 'issues.seed.json');
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -29,26 +34,50 @@ const DATA_DIR = path.join(__dirname, 'data');
 const DATA_FILE = path.join(DATA_DIR, 'issues.json');
 
 // --- helpers ---
-function ensureDataFile() {
+function ensureDir() {
   if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
-  if (!fs.existsSync(DATA_FILE)) {
-    fs.writeFileSync(DATA_FILE, JSON.stringify({ sections: [] }, null, 2), 'utf8');
+}
+
+function seedIfEmpty(obj) {
+  // if no sections or empty array → try to seed
+  const empty = !obj || !Array.isArray(obj.sections) || obj.sections.length === 0;
+  if (!empty) return obj;
+
+  if (fs.existsSync(SEED_FILE)) {
+    try {
+      const raw = fs.readFileSync(SEED_FILE, 'utf8');
+      const seed = JSON.parse(raw);
+      if (Array.isArray(seed.sections) && seed.sections.length > 0) {
+        // write seed as the live data
+        ensureDir();
+        fs.writeFileSync(DATA_FILE, JSON.stringify(seed, null, 2), 'utf8');
+        return seed;
+      }
+    } catch (e) {
+      console.error('Failed to load seed file:', e);
+    }
   }
+  // fallback to empty object
+  return { sections: [] };
 }
 
 function readJson() {
-  ensureDataFile();
-  const raw = fs.readFileSync(DATA_FILE, 'utf8');
+  ensureDir();
+  if (!fs.existsSync(DATA_FILE)) {
+    return seedIfEmpty({ sections: [] });
+  }
   try {
-    return JSON.parse(raw);
+    const raw = fs.readFileSync(DATA_FILE, 'utf8');
+    const parsed = JSON.parse(raw);
+    return seedIfEmpty(parsed);
   } catch (e) {
-    console.error('Failed to parse JSON:', e);
-    return { sections: [] };
+    console.error('Failed to parse data file, attempting seed:', e);
+    return seedIfEmpty({ sections: [] });
   }
 }
 
 function writeJson(obj) {
-  ensureDataFile();
+  ensureDir();
   fs.writeFileSync(DATA_FILE, JSON.stringify(obj, null, 2), 'utf8');
 }
 
