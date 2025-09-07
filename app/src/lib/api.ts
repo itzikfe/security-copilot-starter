@@ -9,12 +9,17 @@ function url(p: string) {
   return full;
 }
 
-
-export async function getIssues(): Promise<any> {
-  const r = await fetch(url('/api/issues'));
-  if (!r.ok) throw new Error(`getIssues failed: ${r.status}`);
-  return r.json();
+export async function getIssues() {
+  try {
+    const r = await fetch(url('/api/issues'), { headers: { 'accept': 'application/json' } });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    return await r.json();
+  } catch (err: any) {
+    console.error('getIssues failed:', err);
+    throw new Error(`Failed to fetch issues: ${err.message || String(err)}`);
+  }
 }
+
 
 export async function deleteIssue(id: string): Promise<void> {
   const r = await fetch(url(`/api/issues/${encodeURIComponent(id)}`), { method: 'DELETE' });
